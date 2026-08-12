@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HH Goa 2026 — Builder ID & PFP Frame Generator</title>
+<meta name="description" content="Create your HH Goa 2026 Builder ID or PFP Frame and share your builder identity with #FrameInGoa.">
+<meta property="og:title" content="HH Goa 2026 — Builder ID & PFP Frame Generator">
+<meta property="og:description" content="Create your HH Goa 2026 Builder ID or PFP Frame and share your builder identity with #FrameInGoa.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- HEIC file converter for iPhone photo support -->
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+
+<style>
+  :root{
+    --paper:#EDE7DA;
+    --paper-2:#E4DCC7;
+    --ink:#161310;
+    --ink-soft:#615A49;
+    --teal:#0E7C74;
+    --teal-deep:#0A5951;
+    --sun:#F2B705;
+    --line:rgba(22,19,16,0.14);
+    --line-strong:rgba(22,19,16,0.32);
+    --danger:#B5321F;
+    --ok:#0E7C74;
+    /* legacy aliases */
+    --bg-night:var(--paper);
+    --bg-plum:var(--paper);
+    --bg-plum-2:var(--paper);
+    --coral:var(--teal);
+    --coral-2:var(--teal-deep);
+    --amber:var(--sun);
+    --sand:var(--ink);
+    --muted:var(--ink-soft);
+    --font-display:'Archivo Black', 'Arial Black', sans-serif;
+    --font-body:'Inter', system-ui, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+    --radius:3px;
+    --container:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg-night);
+    color:var(--sand);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;}
+  a{color:inherit;}
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+  :focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+
+  .bg-glow{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(circle, rgba(22,19,16,0.14) 1px, transparent 1.4px);
+    background-size:26px 26px;
+    background-color:var(--paper);
+  }
+
+  .wrap{max-width:var(--container); margin:0 auto; padding:0 20px;}
+
+  /* NAV */
+  .nav{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px;
+    backdrop-filter:blur(10px);
+    background:rgba(237,231,218,0.88);
+    border-bottom:2px solid var(--ink);
+  }
+  .nav-brand{display:flex; align-items:center; gap:9px; font-family:var(--font-mono); font-size:13px; letter-spacing:0.14em; color:var(--sand); font-weight:700;}
+  .nav-mark{width:20px;height:20px; flex:none; position:relative;}
+  .nav-mark svg{width:100%;height:100%;}
+  .nav-item{font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.12em; color:var(--muted); text-transform:uppercase; font-weight:600;}
+
+  /* HERO */
+  .hero{
+    position:relative; z-index:1;
+    padding:48px 0 36px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.18em;
+    color:var(--teal-deep); text-transform:uppercase; font-weight:700;
+    border:1.5px solid var(--ink); padding:6px 12px;
+    background:var(--sun);
+    box-shadow:2px 2px 0 var(--ink);
+  }
+  .eyebrow::before{content:''; width:6px; height:6px; background:var(--ink); border-radius:50%;}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-size:clamp(40px, 9.5vw, 86px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:20px 0 0;
+    text-transform:uppercase;
+  }
+  .hero h1 .accent{color:var(--teal);}
+  .hero-sub{
+    max-width:500px;
+    font-size:16.5px; line-height:1.55; color:var(--muted);
+    margin:20px 0 0;
+  }
+  .hero-actions{margin-top:28px; display:flex; flex-direction:column; align-items:flex-start; gap:12px;}
+  .btn{
+    font-family:var(--font-mono); font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+    font-size:13.5px; cursor:pointer; border-radius:var(--radius);
+    display:inline-flex; align-items:center; gap:10px;
+    border:2px solid var(--ink);
+    transition:transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
+    user-select:none;
+  }
+  .btn:active{transform:translate(2px,2px); box-shadow:none !important;}
+  .btn-primary{
+    background:var(--teal);
+    color:var(--paper); padding:16px 26px; box-shadow:5px 5px 0 var(--ink);
+  }
+  .btn-primary:hover{background:var(--teal-deep); transform:translate(-1px,-1px); box-shadow:6px 6px 0 var(--ink);}
+  .btn-ghost{
+    background:var(--paper); color:var(--ink); padding:14px 22px;
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--paper); transform:translate(-1px,-1px); box-shadow:6px 6px 0 var(--teal);}
+  .btn-block{width:100%; justify-content:center;}
+  .btn[disabled]{opacity:0.4; cursor:not-allowed; box-shadow:none; transform:none;}
+  .hero-note{font-family:var(--font-mono); font-size:12px; color:var(--muted); letter-spacing:0.04em;}
+
+  .hero-visual{margin-top:36px; display:flex; justify-content:center;}
+  .hero-card-frame{
+    width:min(78vw, 300px);
+    border:2px solid var(--ink);
+    box-shadow:9px 9px 0 var(--teal);
+    transform:rotate(-2deg);
+    background:var(--paper);
+    transition:transform 0.3s ease;
+  }
+  .hero-card-frame:hover{transform:rotate(0deg) scale(1.02);}
+  .hero-card-frame canvas{width:100%; height:auto; display:block;}
+
+  /* SECTION shared */
+  section{position:relative; z-index:1;}
+
+  /* FORMAT SELECTOR PILLS */
+  .format-selector-wrap{
+    margin-bottom:28px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .format-label{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--muted); font-weight:700;
+  }
+  .format-pills{
+    display:flex; gap:12px; flex-wrap:wrap;
+  }
+  .format-pill{
+    flex:1; min-width:200px; padding:14px 18px;
+    background:var(--paper); border:2px solid var(--ink);
+    border-radius:var(--radius); cursor:pointer;
+    display:flex; align-items:center; gap:12px;
+    box-shadow:3px 3px 0 var(--ink);
+    transition:all 0.15s ease;
+    text-align:left;
+  }
+  .format-pill:hover{background:var(--paper-2); transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink);}
+  .format-pill.active{
+    background:var(--sun); border-color:var(--ink); color:var(--ink);
+    font-weight:700; box-shadow:4px 4px 0 var(--ink);
+  }
+  .format-pill-icon{
+    font-size:22px; line-height:1; flex:none;
+  }
+  .format-pill-text h4{
+    margin:0; font-family:var(--font-mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .format-pill-text p{
+    margin:2px 0 0; font-size:11.5px; color:var(--ink-soft); font-weight:normal; line-height:1.3;
+  }
+
+  /* PROGRESS TRACKER */
+  .tracker{
+    display:flex; gap:0; margin-bottom:34px; border:2px solid var(--ink); overflow:hidden;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .tracker-step{
+    flex:1; padding:13px 14px; font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--muted); border-right:2px solid var(--ink);
+    display:flex; align-items:center; gap:8px; transition:color 0.2s ease, background 0.2s ease;
+  }
+  .tracker-step:last-child{border-right:none;}
+  .tracker-step .dot{width:7px;height:7px;border-radius:50%; background:var(--muted); flex:none; transition:background 0.2s ease;}
+  .tracker-step.done{color:var(--ink); background:var(--sun); font-weight:700;}
+  .tracker-step.done .dot{background:var(--ink);}
+
+  .builder{padding-bottom:100px;}
+  .builder-title{font-family:var(--font-display); font-size:clamp(28px,4.5vw,38px); text-transform:uppercase; margin:0 0 6px;}
+  .builder-sub{color:var(--muted); font-size:14.5px; margin:0 0 28px; max-width:540px;}
+
+  .builder-grid{display:grid; grid-template-columns:1fr; gap:40px;}
+
+  .field-group{margin-bottom:24px;}
+  .field-label{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:9px; font-weight:600;
+  }
+  .field-label .req{color:var(--danger);}
+  .field-label .opt{font-size:10.5px; color:var(--muted); text-transform:none; letter-spacing:0; font-weight:normal;}
+  input[type="text"], select, textarea{
+    width:100%; background:var(--paper); border:2px solid var(--ink);
+    color:var(--ink); font-family:var(--font-body); font-size:15.5px; padding:14px 14px;
+    border-radius:var(--radius); appearance:none; -webkit-appearance:none;
+  }
+  select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23161310' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 14px center; padding-right:36px;
+  }
+  input:focus, select:focus, textarea:focus{border-color:var(--teal); background:var(--paper-2);}
+  input::placeholder, textarea::placeholder{color:#928A76;}
+  .field-error{display:none; color:var(--danger); font-family:var(--font-mono); font-size:11.5px; margin-top:7px; font-weight:600;}
+  .field-group.has-error input, .field-group.has-error .dropzone{border-color:var(--danger);}
+  .field-group.has-error .field-error{display:block;}
+  .field-group.shake{animation:shake 0.4s ease;}
+  @keyframes shake{
+    10%,90%{transform:translateX(-1px);} 20%,80%{transform:translateX(2px);}
+    30%,50%,70%{transform:translateX(-4px);} 40%,60%{transform:translateX(4px);}
+  }
+
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.03em;
+    border:2px solid var(--ink); color:var(--ink); background:var(--paper);
+    padding:9px 13px; border-radius:20px; cursor:pointer; transition:all 0.15s ease;
+  }
+  .chip:hover{background:var(--paper-2);}
+  .chip.active{background:var(--ink); border-color:var(--ink); color:var(--paper); font-weight:700;}
+
+  /* DROPZONE */
+  .dropzone{
+    position:relative; border:2px dashed var(--ink); border-radius:var(--radius);
+    padding:32px 18px; text-align:center; cursor:pointer; transition:border-color 0.2s ease, background 0.2s ease;
+    background:var(--paper-2);
+  }
+  .dropzone:hover, .dropzone.drag{border-color:var(--teal); background:rgba(14,124,116,0.08);}
+  .dropzone h3{margin:12px 0 4px; font-family:var(--font-body); font-size:16px; font-weight:700;}
+  .dropzone p{margin:0 0 16px; font-size:13px; color:var(--muted);}
+  .dropzone-icon{width:36px; height:36px; margin:0 auto; color:var(--ink);}
+  .dropzone-btns{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .dropzone input[type=file]{display:none;}
+
+  .cropper-wrap{display:none;}
+  .cropper-wrap.active{display:block;}
+  .crop-frame{
+    position:relative; width:min(100%, 320px); margin:0 auto; aspect-ratio:540/630;
+    overflow:hidden; border:2px solid var(--ink); border-radius:var(--radius);
+    background:var(--paper-2); cursor:grab; touch-action:none; user-select:none;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .crop-frame:active{cursor:grabbing;}
+  .crop-frame img{position:absolute; top:0; left:0; user-select:none; -webkit-user-drag:none; pointer-events:none; will-change:transform;}
+  .crop-controls{display:flex; align-items:center; gap:12px; margin-top:16px;}
+  .crop-controls label{font-family:var(--font-mono); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; font-weight:600;}
+  .crop-controls input[type=range]{flex:1; accent-color:var(--teal);}
+  .crop-actions{display:flex; justify-content:center; gap:16px; margin-top:14px; flex-wrap:wrap;}
+
+  /* Photo Style Filter Pills */
+  .photo-style-row{
+    display:flex; justify-content:center; gap:8px; margin-top:14px; flex-wrap:wrap;
+  }
+  .style-pill{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em;
+    border:1.5px solid var(--ink); color:var(--ink); background:var(--paper);
+    padding:5px 10px; border-radius:14px; cursor:pointer; transition:all 0.15s ease;
+  }
+  .style-pill:hover{background:var(--paper-2);}
+  .style-pill.active{background:var(--teal); color:var(--paper); border-color:var(--ink); font-weight:700;}
+
+  .link-btn{
+    background:none; border:none; color:var(--muted); font-family:var(--font-mono); font-size:11.5px;
+    letter-spacing:0.06em; text-transform:uppercase; cursor:pointer; padding:6px 4px; text-decoration:underline; text-underline-offset:3px;
+    font-weight:600;
+  }
+  .link-btn:hover{color:var(--teal);}
+
+  /* PREVIEW PANEL */
+  .preview-panel{display:flex; flex-direction:column; align-items:center;}
+  .preview-sticky{position:static;}
+  .preview-card-frame{
+    width:min(88vw, 340px);
+    border:2px solid var(--ink); box-shadow:8px 8px 0 var(--sun);
+    background:var(--paper);
+  }
+  .preview-card-frame canvas{width:100%; height:auto; display:block;}
+  .preview-hint{font-family:var(--font-mono); font-size:11px; color:var(--muted); margin-top:16px; text-align:center; letter-spacing:0.04em; font-weight:600;}
+
+  .generate-row{margin-top:8px;}
+  .generate-status{
+    font-family:var(--font-mono); font-size:12px; color:var(--teal-deep); margin-top:12px; text-align:center;
+    min-height:16px; letter-spacing:0.05em; font-weight:700;
+  }
+
+  .mobile-sticky-cta{
+    display:block; position:sticky; bottom:0; z-index:15; margin:24px -20px 0; padding:14px 20px;
+    background:linear-gradient(180deg, transparent, var(--paper) 30%);
+  }
+
+  /* RESULT */
+  .result{padding:60px 0 100px; display:none;}
+  .result.active{display:block;}
+  .result-eyebrow{font-family:var(--font-mono); font-size:12px; letter-spacing:0.14em; color:var(--teal-deep); text-transform:uppercase; font-weight:700;}
+  .result h2{font-family:var(--font-display); font-size:clamp(30px,5vw,46px); margin:10px 0 30px; text-transform:uppercase;}
+  .result-grid{display:grid; grid-template-columns:1fr; gap:36px; align-items:start;}
+  .result-card-frame{
+    width:100%; max-width:400px; margin:0 auto;
+    border:2px solid var(--ink); box-shadow:9px 9px 0 var(--teal);
+    background:var(--paper);
+  }
+  .result-card-frame img{width:100%; display:block;}
+  .result-actions{display:flex; flex-direction:column; gap:12px; max-width:400px; margin:26px auto 0;}
+  .result-actions-row{display:flex; gap:12px;}
+  .result-actions-row .btn{flex:1;}
+  .btn-x{background:var(--ink); color:var(--paper); padding:16px 22px; box-shadow:5px 5px 0 var(--teal);}
+  .btn-x:hover{background:#000; transform:translate(-1px,-1px); box-shadow:6px 6px 0 var(--teal);}
+  .result-fineprint{font-family:var(--font-mono); font-size:11.5px; color:var(--muted); text-align:center; margin-top:16px; line-height:1.6;}
+  .result-restart{text-align:center; margin-top:34px;}
+
+  /* TOAST */
+  .toast{
+    position:fixed; left:50%; bottom:26px; transform:translate(-50%, 20px);
+    background:var(--ink); color:var(--paper); font-family:var(--font-mono); font-size:12.5px; font-weight:700;
+    padding:12px 20px; border-radius:30px; z-index:100; opacity:0; pointer-events:none;
+    transition:opacity 0.25s ease, transform 0.25s ease; letter-spacing:0.03em;
+    display:flex; align-items:center; gap:8px; box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  }
+  .toast.show{opacity:1; transform:translate(-50%, 0);}
+
+  .footer{padding:30px 0 50px; border-top:2px solid var(--ink); margin-top:20px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  .footer p{font-family:var(--font-mono); font-size:11px; color:var(--muted); margin:0; font-weight:600;}
+
+  @media (min-width: 860px){
+    .hero{padding:80px 0 54px;}
+    .hero-inner{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
+    .hero-actions{flex-direction:row; align-items:center;}
+    .hero-visual{margin-top:0;}
+    .hero-card-frame{width:100%; max-width:320px;}
+
+    .builder-grid{grid-template-columns:1fr 0.85fr; gap:60px;}
+    .preview-panel{position:sticky; top:96px; align-self:start;}
+    .mobile-sticky-cta{display:none;}
+    .result-grid{grid-template-columns:0.9fr 1fr;}
+    .result-actions{margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-brand">
+    <span class="nav-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#161310" stroke-width="1.6"/><path d="M4.5 14.5c3-2 5-2 8 0s5 2 8 0" stroke="#0E7C74" stroke-width="1.6" fill="none"/></svg>
+    </span>
+    HH GOA 2026
+  </div>
+  <div class="nav-item">Frame & Builder ID Generator</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">#FrameInGoa</span>
+        <h1>Build your<br>HH Goa <span class="accent">2026</span> ID</h1>
+        <p class="hero-sub">Turn your builder identity into a card or profile picture worth sharing. Upload a photo, pick your stack, get your stamped graphic in seconds.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="ctaCreate">Create My Builder Graphic →</button>
+          <span class="hero-note">No login required. Free & instant.</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-frame" id="heroCardFrame">
+          <canvas id="heroPreviewCanvas" width="540" height="675" aria-label="Example HH Goa 2026 Builder ID card"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="builder wrap" id="builder">
+    <div class="tracker" role="list" aria-label="Progress">
+      <div class="tracker-step" id="trackStep1" role="listitem"><span class="dot"></span>01 Photo</div>
+      <div class="tracker-step" id="trackStep2" role="listitem"><span class="dot"></span>02 Details</div>
+      <div class="tracker-step" id="trackStep3" role="listitem"><span class="dot"></span>03 Your Card</div>
+    </div>
+
+    <!-- Format Selector (Format A vs Format B) -->
+    <div class="format-selector-wrap">
+      <div class="format-label">Select Graphic Format:</div>
+      <div class="format-pills" role="radiogroup" aria-label="Format Selection">
+        <button type="button" class="format-pill active" id="formatPillB" role="radio" aria-checked="true" data-format="B">
+          <span class="format-pill-icon">🎴</span>
+          <div class="format-pill-text">
+            <h4>Format B: Builder ID Card</h4>
+            <p>4:5 Event Badge with photo, name, role & stamped title.</p>
+          </div>
+        </button>
+
+        <button type="button" class="format-pill" id="formatPillA" role="radio" aria-checked="false" data-format="A">
+          <span class="format-pill-icon">🖼️</span>
+          <div class="format-pill-text">
+            <h4>Format A: PFP Frame / Overlay</h4>
+            <p>1:1 Square profile picture with HH Goa event frame.</p>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="builder-title" id="builderTitleHeader">Build your ID</h2>
+    <p class="builder-sub">Fill this in — the live preview on the right updates instantly as you edit.</p>
+
+    <div class="builder-grid">
+      <form id="builderForm" novalidate>
+
+        <div class="field-group" id="photoGroup">
+          <div class="field-label"><span>Upload your photo <span class="req">*</span></span></div>
+
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload your photo">
+            <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <h3>Upload your photo</h3>
+            <p>JPG, PNG, WEBP, or iPhone HEIC — portrait or landscape.</p>
+            <div class="dropzone-btns">
+              <button type="button" class="btn btn-primary" id="uploadBtn">Upload Photo</button>
+              <button type="button" class="btn btn-ghost" id="takePhotoBtn">Take a Photo</button>
+            </div>
+            <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png,image/webp,image/heic,image/heif,.heic,.heif">
+            <input type="file" id="cameraInput" accept="image/*" capture="user">
+          </div>
+
+          <div class="cropper-wrap" id="cropperWrap">
+            <div class="crop-frame" id="cropFrame" aria-label="Drag to reposition your photo, use the slider to zoom">
+              <img id="cropImg" src="" alt="">
+            </div>
+            <div class="crop-controls">
+              <label for="zoomRange">Zoom</label>
+              <input type="range" id="zoomRange" min="1" max="2.8" step="0.01" value="1" aria-label="Zoom photo">
+            </div>
+
+            <div class="photo-style-row">
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--muted); font-weight:600; align-self:center;">STYLE:</span>
+              <button type="button" class="style-pill active" data-style="original">Original Color</button>
+              <button type="button" class="style-pill" data-style="teal">Signature Teal</button>
+              <button type="button" class="style-pill" data-style="mono">Mono B&W</button>
+              <button type="button" class="style-pill" data-style="warm">Retro Warm</button>
+            </div>
+
+            <div class="crop-actions">
+              <button type="button" class="link-btn" id="recenterBtn">Recenter</button>
+              <button type="button" class="link-btn" id="changePhotoBtn">Change photo</button>
+            </div>
+          </div>
+          <p class="field-error" id="photoError">Please upload a valid JPG, PNG, WEBP, or HEIC photo.</p>
+        </div>
+
+        <div class="field-group" id="nameGroup">
+          <label class="field-label" for="nameInput"><span>Name <span class="req">*</span></span></label>
+          <input type="text" id="nameInput" placeholder="Your name" maxlength="40" autocomplete="name">
+          <p class="field-error">Please add your name to continue.</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="roleSelect"><span>Stack / Role</span></label>
+          <select id="roleSelect">
+            <option value="">Select your stack</option>
+            <option>Full Stack Developer</option>
+            <option>Frontend Developer</option>
+            <option>Backend Developer</option>
+            <option>AI Engineer</option>
+            <option>Designer</option>
+            <option>Product Builder</option>
+            <option>Founder</option>
+            <option>Student</option>
+            <option>Indie Hacker</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="text" id="roleCustom" placeholder="Tell us your role" style="margin-top:10px; display:none;" maxlength="40">
+        </div>
+
+        <div class="field-group" id="buildingGroup">
+          <label class="field-label" for="buildingInput"><span>Currently building</span><span class="opt">Optional</span></label>
+          <input type="text" id="buildingInput" placeholder="What project are you building?" maxlength="60">
+        </div>
+
+        <div class="field-group" id="vibeGroup">
+          <div class="field-label"><span>Builder vibe</span><span class="opt">Optional</span></div>
+          <div class="chip-row" id="vibeRow" role="group" aria-label="Builder vibe">
+            <button type="button" class="chip" data-vibe="Shipping fast">Shipping fast</button>
+            <button type="button" class="chip" data-vibe="Breaking things">Breaking things</button>
+            <button type="button" class="chip" data-vibe="AI obsessed">AI obsessed</button>
+            <button type="button" class="chip" data-vibe="Weekend hacker">Weekend hacker</button>
+            <button type="button" class="chip" data-vibe="Pixel perfectionist">Pixel perfectionist</button>
+            <button type="button" class="chip" data-vibe="Serial builder">Serial builder</button>
+          </div>
+        </div>
+
+        <div class="generate-row">
+          <button type="submit" class="btn btn-primary btn-block" id="generateBtn">Generate My Builder Graphic →</button>
+          <p class="generate-status" id="generateStatus" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div class="preview-panel">
+        <div class="preview-sticky">
+          <div class="preview-card-frame" id="previewCardFrame">
+            <canvas id="previewCanvas" width="540" height="675" aria-label="Live preview of your HH Goa graphic"></canvas>
+          </div>
+          <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-top:14px;">
+            <span class="preview-hint" style="margin-top:0;">Live preview — updates as you type</span>
+            <button type="button" class="link-btn" id="shuffleTitleBtn" title="Shuffle generated builder title">🎲 Shuffle Title</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-sticky-cta">
+      <button type="button" class="btn btn-primary btn-block" id="stickyGenerateBtn">Generate My Builder Graphic →</button>
+    </div>
+  </section>
+
+  <section class="result wrap" id="resultSection" aria-live="polite">
+    <span class="result-eyebrow">#FrameInGoa</span>
+    <h2 id="resultTitle">Your Builder ID is ready.</h2>
+    <div class="result-grid">
+      <div>
+        <div class="result-card-frame">
+          <img id="resultImg" alt="Your generated HH Goa 2026 Builder graphic">
+        </div>
+      </div>
+      <div>
+        <div class="result-actions">
+          <button class="btn btn-primary btn-block" id="downloadBtn">Download Image ↓</button>
+          <div class="result-actions-row">
+            <button class="btn btn-x" id="shareXBtn">Share on X ↗</button>
+            <button class="btn btn-ghost" id="copyImgBtn">Copy Image</button>
+          </div>
+          <button class="btn btn-ghost btn-block" id="copyCaptionBtn">Copy Caption & Hashtag</button>
+        </div>
+        <p class="result-fineprint">Share your graphic on X using <strong>#FrameInGoa</strong> to represent your builder journey in Goa!</p>
+        <div class="result-restart">
+          <button class="link-btn" id="restartBtn">Create Another Graphic</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer wrap">
+  <div class="footer-row">
+    <p>HH GOA 2026 — NO LOGIN REQUIRED. ALL PROCESSING RUNS CLIENT-SIDE IN YOUR BROWSER.</p>
+    <p>GOA, INDIA</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------------------------------------------------
+   * STATE
+   * --------------------------------------------------------- */
+  const state = {
+    format: "B", // "B" = Builder ID Card (4:5), "A" = PFP Frame (1:1)
+    name: "",
+    role: "",
+    building: "",
+    vibe: "",
+    title: "",
+    titleSeed: 0,
+    photoStyle: "original", // "original" (default unchanged photo color), "teal", "mono", "warm"
+    photo: {
+      img: null,      // HTMLImageElement
+      natW: 0,
+      natH: 0,
+      zoom: 1,
+      panX: 0,        // normalized -1..1
+      panY: 0
+    }
+  };
+
+  // Design slot dimensions (Format B: 1080x1350)
+  const SLOT_ID = { w: 540, h: 630, x: 270, y: 195 };
+
+  /* ---------------------------------------------------------
+   * DOM Elements
+   * --------------------------------------------------------- */
+  const $ = (id) => document.getElementById(id);
+  const dropzone = $("dropzone");
+  const fileInput = $("fileInput");
+  const cameraInput = $("cameraInput");
+  const uploadBtn = $("uploadBtn");
+  const takePhotoBtn = $("takePhotoBtn");
+  const cropperWrap = $("cropperWrap");
+  const cropFrame = $("cropFrame");
+  const cropImg = $("cropImg");
+  const zoomRange = $("zoomRange");
+  const recenterBtn = $("recenterBtn");
+  const changePhotoBtn = $("changePhotoBtn");
+  const photoGroup = $("photoGroup");
+  const photoError = $("photoError");
+
+  const nameInput = $("nameInput");
+  const nameGroup = $("nameGroup");
+  const roleSelect = $("roleSelect");
+  const roleCustom = $("roleCustom");
+  const buildingInput = $("buildingInput");
+  const vibeRow = $("vibeRow");
+
+  const formatPillA = $("formatPillA");
+  const formatPillB = $("formatPillB");
+  const previewCardFrame = $("previewCardFrame");
+  const heroCardFrame = $("heroCardFrame");
+  const builderTitleHeader = $("builderTitleHeader");
+  const shuffleTitleBtn = $("shuffleTitleBtn");
+
+  const builderForm = $("builderForm");
+  const generateBtn = $("generateBtn");
+  const stickyGenerateBtn = $("stickyGenerateBtn");
+  const generateStatus = $("generateStatus");
+
+  const previewCanvas = $("previewCanvas");
+  const heroPreviewCanvas = $("heroPreviewCanvas");
+  const resultSection = $("resultSection");
+  const resultImg = $("resultImg");
+  const resultTitle = $("resultTitle");
+  const downloadBtn = $("downloadBtn");
+  const shareXBtn = $("shareXBtn");
+  const copyImgBtn = $("copyImgBtn");
+  const copyCaptionBtn = $("copyCaptionBtn");
+  const restartBtn = $("restartBtn");
+  const toast = $("toast");
+
+  const trackStep1 = $("trackStep1");
+  const trackStep2 = $("trackStep2");
+  const trackStep3 = $("trackStep3");
+
+  /* ---------------------------------------------------------
+   * Utilities
+   * --------------------------------------------------------- */
+  let toastTimer = null;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=> toast.classList.remove("show"), 2500);
+  }
+
+  function setError(group, show){
+    if(!group) return;
+    if(show) group.classList.add("has-error"); else group.classList.remove("has-error");
+  }
+
+  function shake(el){
+    if(!el) return;
+    el.classList.remove("shake");
+    void el.offsetWidth;
+    el.classList.add("shake");
+  }
+
+  /* ---------------------------------------------------------
+   * Title Generator logic
+   * --------------------------------------------------------- */
+  const ROLE_NOUNS = {
+    "Full Stack Developer": "ARCHITECT",
+    "Frontend Developer": "PIXEL SMITH",
+    "Backend Developer": "SYSTEM ALCHEMIST",
+    "AI Engineer": "AI ARCHITECT",
+    "Designer": "VISION CRAFTER",
+    "Product Builder": "PRODUCT HACKER",
+    "Founder": "EMPIRE BUILDER",
+    "Student": "APPRENTICE SHIPPER",
+    "Indie Hacker": "SOLO SHIPPER",
+    "": "DIGITAL BUILDER"
+  };
+
+  const VIBE_ADJ = {
+    "Shipping fast": ["RAPID", "SWIFT", "LIGHTSPEED"],
+    "Breaking things": ["CHAOS", "DISRUPTIVE", "FEARLESS"],
+    "AI obsessed": ["NEURAL", "SYNTHETIC", "AUTONOMOUS"],
+    "Weekend hacker": ["MIDNIGHT", "ROGUE", "UNSTOPPABLE"],
+    "Pixel perfectionist": ["PRECISION", "CRYSTAL", "VECTOR"],
+    "Serial builder": ["SERIAL", "RELENTLESS", "PROLIFIC"]
+  };
+
+  const FALLBACK_ADJ = ["NIGHTTIME", "DIGITAL", "RELENTLESS", "ORIGINAL", "FEARLESS", "APEX", "QUANTUM", "CYBER"];
+
+  function hashStr(s){
+    let h = 0;
+    for(let i=0;i<s.length;i++){ h = (h*31 + s.charCodeAt(i)) | 0; }
+    return Math.abs(h);
+  }
+
+  function generateBuilderTitle({name, role, building}){
+    const noun = ROLE_NOUNS[role] || ROLE_NOUNS[""];
+    let adjList = VIBE_ADJ[state.vibe];
+    let adj = "";
+    if(adjList && adjList.length > 0){
+      adj = adjList[state.titleSeed % adjList.length];
+    } else {
+      const seed = hashStr((name||"builder") + (building||"")) + state.titleSeed;
+      adj = FALLBACK_ADJ[seed % FALLBACK_ADJ.length];
+    }
+    return `THE ${adj} ${noun}`;
+  }
+
+  function updateTitle(){
+    state.title = generateBuilderTitle({
+      name: state.name,
+      role: state.role,
+      building: state.building
+    });
+  }
+
+  /* ---------------------------------------------------------
+   * Canvas Drawing Helpers
+   * --------------------------------------------------------- */
+  let dotPatternCanvas = null;
+  function getDotPattern(ctx){
+    if(!dotPatternCanvas){
+      dotPatternCanvas = document.createElement("canvas");
+      dotPatternCanvas.width = 30; dotPatternCanvas.height = 30;
+      const nctx = dotPatternCanvas.getContext("2d");
+      nctx.fillStyle = "rgba(22,19,16,0.16)";
+      nctx.beginPath();
+      nctx.arc(4, 4, 1.4, 0, Math.PI*2);
+      nctx.fill();
+    }
+    return ctx.createPattern(dotPatternCanvas, "repeat");
+  }
+
+  function roundRectPath(ctx, x, y, w, h, r){
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.arcTo(x+w, y, x+w, y+h, r);
+    ctx.arcTo(x+w, y+h, x, y+h, r);
+    ctx.arcTo(x, y+h, x, y, r);
+    ctx.arcTo(x, y, x+w, y, r);
+    ctx.closePath();
+  }
+
+  function drawSpacedText(ctx, text, x, y, spacing, align){
+    align = align || "left";
+    let widths = [];
+    let total = 0;
+    for(const ch of text){
+      const w = ctx.measureText(ch).width;
+      widths.push(w);
+      total += w + spacing;
+    }
+    total -= spacing;
+    let cursor = x;
+    if(align === "center") cursor = x - total/2;
+    if(align === "right") cursor = x - total;
+    const prevAlign = ctx.textAlign;
+    ctx.textAlign = "left";
+    for(let i=0;i<text.length;i++){
+      ctx.fillText(text[i], cursor, y);
+      cursor += widths[i] + spacing;
+    }
+    ctx.textAlign = prevAlign;
+    return total;
+  }
+
+  function fitFontSize(ctx, text, maxWidth, startSize, fontFamily, weight, minSize){
+    minSize = minSize || 14;
+    let size = startSize;
+    ctx.font = `${weight||400} ${size}px ${fontFamily}`;
+    while(ctx.measureText(text).width > maxWidth && size > minSize){
+      size -= 1;
+      ctx.font = `${weight||400} ${size}px ${fontFamily}`;
+    }
+    return size;
+  }
+
+  function getPhotoDrawParams(slotW, slotH, imgObj){
+    const p = state.photo;
+    const activeImg = imgObj || p.img;
+    if(!activeImg) return null;
+    const natW = activeImg.naturalWidth || activeImg.width || 300;
+    const natH = activeImg.naturalHeight || activeImg.height || 300;
+    const baseScale = Math.max(slotW / natW, slotH / natH);
+    const scale = baseScale * p.zoom;
+    const dw = natW * scale, dh = natH * scale;
+    const maxX = Math.max((dw - slotW) / 2, 0);
+    const maxY = Math.max((dh - slotH) / 2, 0);
+    const offsetX = p.panX * maxX;
+    const offsetY = p.panY * maxY;
+    const dx = (slotW - dw) / 2 + offsetX;
+    const dy = (slotH - dh) / 2 + offsetY;
+    return { dx, dy, dw, dh };
+  }
+
+  /* Apply photo color style filter */
+  function applyPhotoStyle(ctx, slotX, slotY, slotW, slotH, styleMode, PAPER, TEAL){
+    if(styleMode === "teal"){
+      // Signature Teal Duotone
+      ctx.save();
+      ctx.globalCompositeOperation = "color";
+      ctx.fillStyle = TEAL;
+      ctx.globalAlpha = 0.82;
+      ctx.fillRect(slotX, slotY, slotW, slotH);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalCompositeOperation = "soft-light";
+      ctx.fillStyle = PAPER;
+      ctx.globalAlpha = 0.18;
+      ctx.fillRect(slotX, slotY, slotW, slotH);
+      ctx.restore();
+    } else if(styleMode === "mono"){
+      // High-contrast Mono B&W
+      ctx.save();
+      ctx.globalCompositeOperation = "saturation";
+      ctx.fillStyle = "#000000";
+      ctx.globalAlpha = 1.0;
+      ctx.fillRect(slotX, slotY, slotW, slotH);
+      ctx.restore();
+    } else if(styleMode === "warm"){
+      // Retro Warm Poster Tint
+      ctx.save();
+      ctx.globalCompositeOperation = "color-burn";
+      ctx.fillStyle = "#F2B705";
+      ctx.globalAlpha = 0.25;
+      ctx.fillRect(slotX, slotY, slotW, slotH);
+      ctx.restore();
+    }
+    // "original" applies no overlay (keeps photo 100% original color!)
+  }
+
+  /* Default placeholder avatar graphic when no user photo uploaded */
+  let defaultAvatarCanvas = null;
+  function getDefaultAvatar(){
+    if(!defaultAvatarCanvas){
+      defaultAvatarCanvas = document.createElement("canvas");
+      defaultAvatarCanvas.width = 600; defaultAvatarCanvas.height = 600;
+      const actx = defaultAvatarCanvas.getContext("2d");
+      actx.fillStyle = "#D4CBBA";
+      actx.fillRect(0,0,600,600);
+      actx.fillStyle = "#161310";
+      // head
+      actx.beginPath();
+      actx.arc(300, 240, 110, 0, Math.PI*2);
+      actx.fill();
+      // body
+      actx.beginPath();
+      actx.ellipse(300, 520, 200, 180, 0, Math.PI, 0, true);
+      actx.fill();
+      // glasses accent
+      actx.strokeStyle = "#F2B705";
+      actx.lineWidth = 12;
+      actx.strokeRect(210, 210, 75, 55);
+      actx.strokeRect(315, 210, 75, 55);
+      actx.beginPath(); actx.moveTo(285, 237); actx.lineTo(315, 237); actx.stroke();
+    }
+    return defaultAvatarCanvas;
+  }
+
+  /* ---------------------------------------------------------
+   * RENDER FORMAT B: Builder ID Card (1080x1350)
+   * --------------------------------------------------------- */
+  function drawCardB(ctx, W, H, overridePhoto){
+    const s = W / 1080;
+    ctx.clearRect(0,0,W,H);
+    ctx.save();
+    ctx.scale(s, s);
+
+    const w = 1080, h = 1350;
+    const INK = "#161310", TEAL = "#0E7C74", TEAL_DEEP = "#0A5951", SUN = "#F2B705", PAPER = "#EDE7DA";
+
+    // flat paper background + dot-grid texture
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(0,0,w,h);
+    ctx.save();
+    ctx.fillStyle = getDotPattern(ctx);
+    ctx.fillRect(0,0,w,h);
+    ctx.restore();
+
+    // outer frame + corner clips
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 3;
+    ctx.strokeRect(18,18,w-36,h-36);
+    ctx.fillStyle = INK;
+    [[18,18],[w-18,18],[18,h-18],[w-18,h-18]].forEach(([cx,cy])=>{
+      ctx.fillRect(cx-8, cy-8, 16, 16);
+    });
+
+    // top label row
+    ctx.textBaseline = "alphabetic";
+    ctx.fillStyle = TEAL;
+    ctx.font = "600 20px 'IBM Plex Mono', monospace";
+    drawSpacedText(ctx, "HH GOA 2026", 66, 96, 4, "left");
+    ctx.fillStyle = SUN;
+    ctx.fillRect(w-158, 78, 92, 26);
+    ctx.fillStyle = INK;
+    ctx.font = "700 13px 'IBM Plex Mono', monospace";
+    ctx.textAlign = "center";
+    drawSpacedText(ctx, "BUILDER", w-112, 96, 1.5, "center");
+    ctx.textAlign = "left";
+
+    ctx.fillStyle = INK;
+    ctx.font = "400 74px 'Archivo Black', sans-serif";
+    ctx.fillText("BUILDER ID", 64, 172);
+
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(64, 194);
+    ctx.lineTo(w-64, 194);
+    ctx.stroke();
+
+    // photo slot
+    const slotX = SLOT_ID.x, slotY = SLOT_ID.y, slotW = SLOT_ID.w, slotH = SLOT_ID.h;
+    ctx.save();
+    roundRectPath(ctx, slotX, slotY, slotW, slotH, 4);
+    ctx.clip();
+    ctx.fillStyle = "#D9D0B8";
+    ctx.fillRect(slotX, slotY, slotW, slotH);
+
+    const activeImg = overridePhoto || state.photo.img || getDefaultAvatar();
+    const params = getPhotoDrawParams(slotW, slotH, activeImg);
+
+    if(params){
+      ctx.save();
+      ctx.translate(slotX, slotY);
+      ctx.drawImage(activeImg, params.dx, params.dy, params.dw, params.dh);
+      ctx.restore();
+      applyPhotoStyle(ctx, slotX, slotY, slotW, slotH, state.photoStyle, PAPER, TEAL);
+    }
+    ctx.restore();
+
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 3;
+    roundRectPath(ctx, slotX, slotY, slotW, slotH, 4);
+    ctx.stroke();
+
+    // Name
+    const nameY = slotY + slotH + 76;
+    const displayName = (state.name || "BUILDER NAME").toUpperCase();
+    const fontSize = fitFontSize(ctx, displayName, w-128, 60, "'Archivo Black', sans-serif", 400, 18);
+    ctx.fillStyle = INK;
+    ctx.font = `400 ${fontSize}px 'Archivo Black', sans-serif`;
+    ctx.textAlign = "left";
+    ctx.fillText(displayName, 64, nameY);
+
+    // Role
+    const roleText = (state.role || "FULL STACK DEVELOPER").toUpperCase();
+    ctx.fillStyle = TEAL_DEEP;
+    ctx.font = "600 20px 'IBM Plex Mono', monospace";
+    ctx.textAlign = "left";
+    drawSpacedText(ctx, roleText, 66, nameY + 34, 2, "left");
+
+    // Passport-style rotated stamp badge with Builder Title
+    const badgeText = state.title || "THE DIGITAL BUILDER";
+    const words = badgeText.split(" ");
+    const stampLine1 = words[0] || "THE";
+    const stampLine2 = words.slice(1).join(" ");
+    const stampCx = w - 210, stampCy = nameY + 150, stampR = 128;
+
+    ctx.save();
+    ctx.translate(stampCx, stampCy);
+    ctx.rotate(-9 * Math.PI / 180);
+    ctx.strokeStyle = TEAL;
+    ctx.lineWidth = 3;
+    ctx.setLineDash([6,6]);
+    ctx.beginPath(); ctx.arc(0,0, stampR, 0, Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(0,0, stampR-14, 0, Math.PI*2); ctx.stroke();
+
+    ctx.fillStyle = TEAL;
+    ctx.textAlign = "center";
+    ctx.font = "700 13px 'IBM Plex Mono', monospace";
+    drawSpacedText(ctx, "GOA ENTRY", 0, -stampR*0.42, 2, "center");
+
+    let stampFont = fitFontSize(ctx, stampLine1 + " " + stampLine2, stampR*1.5, 24, "'Archivo Black', sans-serif", 400, 14);
+    ctx.font = `400 ${stampFont}px 'Archivo Black', sans-serif`;
+    ctx.fillStyle = INK;
+    ctx.fillText(stampLine1, 0, -6);
+
+    if(stampLine2){
+      const l2Size = fitFontSize(ctx, stampLine2, stampR*1.6, 22, "'Archivo Black', sans-serif", 400, 12);
+      ctx.font = `400 ${l2Size}px 'Archivo Black', sans-serif`;
+      ctx.fillText(stampLine2, 0, l2Size - 2);
+    }
+
+    ctx.font = "700 13px 'IBM Plex Mono', monospace";
+    ctx.fillStyle = TEAL;
+    drawSpacedText(ctx, "2026", 0, stampR*0.55, 3, "center");
+    ctx.restore();
+    ctx.textAlign = "left";
+
+    // Currently building
+    let cursorY = nameY + 88;
+    if(state.building){
+      ctx.fillStyle = "rgba(22,19,16,0.78)";
+      const buildingLine = `BUILDING: ${state.building.toUpperCase()}`;
+      const maxW = w - 420;
+      const bSize = fitFontSize(ctx, buildingLine, maxW, 18, "'IBM Plex Mono', monospace", 600, 12);
+      ctx.font = `600 ${bSize}px 'IBM Plex Mono', monospace`;
+      ctx.textAlign = "left";
+      ctx.fillText(buildingLine, 64, cursorY);
+    }
+
+    // Footer row
+    const footY = h - 78;
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(64, footY - 34);
+    ctx.lineTo(w-64, footY - 34);
+    ctx.stroke();
+
+    ctx.fillStyle = TEAL;
+    ctx.font = "700 32px 'IBM Plex Mono', monospace";
+    ctx.textAlign = "left";
+    ctx.fillText("#FrameInGoa", 64, footY + 8);
+
+    // Wave mark
+    ctx.save();
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 3;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(w-190, footY);
+    ctx.bezierCurveTo(w-172, footY-14, w-160, footY+14, w-142, footY);
+    ctx.bezierCurveTo(w-124, footY-14, w-112, footY+14, w-94, footY);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.fillStyle = "rgba(22,19,16,0.55)";
+    ctx.font = "600 15px 'IBM Plex Mono', monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("GOA, INDIA", w-64, footY + 34);
+    ctx.textAlign = "left";
+
+    ctx.restore();
+  }
+
+  /* ---------------------------------------------------------
+   * RENDER FORMAT A: PFP Profile Frame (1080x1080 Square)
+   * --------------------------------------------------------- */
+  function drawCardA(ctx, W, H, overridePhoto){
+    const s = W / 1080;
+    ctx.clearRect(0,0,W,H);
+    ctx.save();
+    ctx.scale(s, s);
+
+    const w = 1080, h = 1080;
+    const INK = "#161310", TEAL = "#0E7C74", SUN = "#F2B705", PAPER = "#EDE7DA";
+
+    // flat paper background + dot-grid texture
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(0,0,w,h);
+    ctx.save();
+    ctx.fillStyle = getDotPattern(ctx);
+    ctx.fillRect(0,0,w,h);
+    ctx.restore();
+
+    // Centered photo area (780x780 inside 1080x1080)
+    const slotX = 150, slotY = 150, slotW = 780, slotH = 780;
+
+    ctx.save();
+    roundRectPath(ctx, slotX, slotY, slotW, slotH, 8);
+    ctx.clip();
+    ctx.fillStyle = "#D9D0B8";
+    ctx.fillRect(slotX, slotY, slotW, slotH);
+
+    const activeImg = overridePhoto || state.photo.img || getDefaultAvatar();
+    const params = getPhotoDrawParams(slotW, slotH, activeImg);
+
+    if(params){
+      ctx.save();
+      ctx.translate(slotX, slotY);
+      ctx.drawImage(activeImg, params.dx, params.dy, params.dw, params.dh);
+      ctx.restore();
+      applyPhotoStyle(ctx, slotX, slotY, slotW, slotH, state.photoStyle, PAPER, TEAL);
+    }
+    ctx.restore();
+
+    // Heavy inner frame border around photo
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 4;
+    roundRectPath(ctx, slotX, slotY, slotW, slotH, 8);
+    ctx.stroke();
+
+    // Top Banner Bar
+    ctx.fillStyle = INK;
+    ctx.fillRect(0, 0, w, 110);
+    ctx.fillStyle = PAPER;
+    ctx.font = "400 42px 'Archivo Black', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("HH GOA 2026", w/2, 72);
+
+    // Bottom Banner Bar
+    ctx.fillStyle = INK;
+    ctx.fillRect(0, h-130, w, 130);
+
+    ctx.fillStyle = SUN;
+    ctx.fillRect(50, h-100, 180, 44);
+    ctx.fillStyle = INK;
+    ctx.font = "700 18px 'IBM Plex Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("BUILDER", 140, h-72);
+
+    ctx.fillStyle = TEAL;
+    ctx.font = "700 36px 'IBM Plex Mono', monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("#FrameInGoa", w-60, h-68);
+
+    // Corner Clips & Outer Frame
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 4;
+    ctx.strokeRect(12, 12, w-24, h-24);
+
+    ctx.fillStyle = SUN;
+    [[12,12],[w-12,12],[12,h-12],[w-12,h-12]].forEach(([cx,cy])=>{
+      ctx.fillRect(cx-10, cy-10, 20, 20);
+      ctx.strokeRect(cx-10, cy-10, 20, 20);
+    });
+
+    ctx.restore();
+  }
+
+  /* Master draw function routes to Format B or Format A */
+  function drawCard(ctx, W, H, overridePhoto){
+    if(state.format === "A"){
+      drawCardA(ctx, W, H, overridePhoto);
+    } else {
+      drawCardB(ctx, W, H, overridePhoto);
+    }
+  }
+
+  let rafPending = false;
+  function scheduleRender(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(()=>{
+      rafPending = false;
+      const targetW = state.format === "A" ? 540 : 540;
+      const targetH = state.format === "A" ? 540 : 675;
+      previewCanvas.width = targetW;
+      previewCanvas.height = targetH;
+      const pctx = previewCanvas.getContext("2d");
+      drawCard(pctx, targetW, targetH);
+    });
+  }
+
+  function renderHeroExample(){
+    const targetW = 540, targetH = 675;
+    heroPreviewCanvas.width = targetW;
+    heroPreviewCanvas.height = targetH;
+    const hctx = heroPreviewCanvas.getContext("2d");
+    const sampleImg = getDefaultAvatar();
+    drawCardB(hctx, targetW, targetH, sampleImg);
+  }
+
+  /* ---------------------------------------------------------
+   * Format Switcher Interaction
+   * --------------------------------------------------------- */
+  function setFormat(fmt){
+    state.format = fmt;
+    if(fmt === "A"){
+      formatPillA.classList.add("active"); formatPillA.setAttribute("aria-checked","true");
+      formatPillB.classList.remove("active"); formatPillB.setAttribute("aria-checked","false");
+      previewCardFrame.style.aspectRatio = "1/1";
+      builderTitleHeader.textContent = "Build your PFP Frame";
+      cropFrame.style.aspectRatio = "1/1";
+    } else {
+      formatPillB.classList.add("active"); formatPillB.setAttribute("aria-checked","true");
+      formatPillA.classList.remove("active"); formatPillA.setAttribute("aria-checked","false");
+      previewCardFrame.style.aspectRatio = "540/675";
+      builderTitleHeader.textContent = "Build your Builder ID";
+      cropFrame.style.aspectRatio = "540/630";
+    }
+    updateCropDomTransform();
+    scheduleRender();
+  }
+
+  formatPillA.addEventListener("click", ()=> setFormat("A"));
+  formatPillB.addEventListener("click", ()=> setFormat("B"));
+
+  /* ---------------------------------------------------------
+   * Progress Tracker
+   * --------------------------------------------------------- */
+  function updateTracker(){
+    trackStep1.classList.toggle("done", !!state.photo.img);
+    trackStep2.classList.toggle("done", !!state.name.trim());
+    trackStep3.classList.toggle("done", resultSection.classList.contains("active"));
+  }
+
+  /* ---------------------------------------------------------
+   * HEIC & Image Loading
+   * --------------------------------------------------------- */
+  function isValidImageFile(file){
+    if(!file) return false;
+    const name = file.name.toLowerCase();
+    return ["image/jpeg","image/jpg","image/png","image/webp","image/heic","image/heif"].includes(file.type) ||
+           name.endsWith(".heic") || name.endsWith(".heif");
+  }
+
+  async function loadPhotoFile(file){
+    if(!isValidImageFile(file)){
+      setError(photoGroup, true);
+      shake(photoGroup);
+      return;
+    }
+    setError(photoGroup, false);
+
+    let activeBlob = file;
+
+    // Convert HEIC if needed
+    const name = file.name.toLowerCase();
+    if(file.type === "image/heic" || file.type === "image/heif" || name.endsWith(".heic") || name.endsWith(".heif")){
+      if(window.heic2any){
+        try{
+          showToast("Converting HEIC photo…");
+          const converted = await window.heic2any({ blob: file, toType: "image/jpeg", quality: 0.9 });
+          activeBlob = Array.isArray(converted) ? converted[0] : converted;
+        }catch(err){
+          console.warn("HEIC conversion fallback:", err);
+        }
+      }
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      const img = new Image();
+      img.onload = ()=>{
+        state.photo.img = img;
+        state.photo.natW = img.naturalWidth || 600;
+        state.photo.natH = img.naturalHeight || 600;
+        state.photo.zoom = 1;
+        state.photo.panX = 0;
+        state.photo.panY = 0;
+        cropImg.src = e.target.result;
+        cropperWrap.classList.add("active");
+        dropzone.style.display = "none";
+        zoomRange.value = 1;
+        requestAnimationFrame(updateCropDomTransform);
+        scheduleRender();
+        updateTracker();
+      };
+      img.onerror = ()=>{
+        setError(photoGroup, true);
+        shake(photoGroup);
+      };
+      img.src = e.target.result;
+    };
+    reader.onerror = ()=>{
+      setError(photoGroup, true);
+      shake(photoGroup);
+    };
+    reader.readAsDataURL(activeBlob);
+  }
+
+  function updateCropDomTransform(){
+    if(!state.photo.img) return;
+    const rect = cropFrame.getBoundingClientRect();
+    const slotW = rect.width || 300, slotH = rect.height || 350;
+    const params = getPhotoDrawParams(slotW, slotH);
+    if(!params) return;
+    cropImg.style.width = params.dw + "px";
+    cropImg.style.height = params.dh + "px";
+    cropImg.style.transform = `translate(${params.dx}px, ${params.dy}px)`;
+  }
+
+  uploadBtn.addEventListener("click", (e)=>{ e.stopPropagation(); fileInput.click(); });
+  takePhotoBtn.addEventListener("click", (e)=>{ e.stopPropagation(); cameraInput.click(); });
+  dropzone.addEventListener("click", ()=> fileInput.click());
+  dropzone.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fileInput.click(); } });
+
+  fileInput.addEventListener("change", (e)=>{ if(e.target.files[0]) loadPhotoFile(e.target.files[0]); });
+  cameraInput.addEventListener("change", (e)=>{ if(e.target.files[0]) loadPhotoFile(e.target.files[0]); });
+
+  ["dragenter","dragover"].forEach(evt=>{
+    dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); dropzone.classList.add("drag"); });
+  });
+  ["dragleave","drop"].forEach(evt=>{
+    dropzone.addEventListener(evt, (e)=>{ e.preventDefault(); dropzone.classList.remove("drag"); });
+  });
+  dropzone.addEventListener("drop", (e)=>{
+    const file = e.dataTransfer.files[0];
+    if(file) loadPhotoFile(file);
+  });
+
+  changePhotoBtn.addEventListener("click", ()=>{
+    cropperWrap.classList.remove("active");
+    dropzone.style.display = "";
+    state.photo.img = null;
+    fileInput.value = "";
+    cameraInput.value = "";
+    scheduleRender();
+    updateTracker();
+  });
+
+  recenterBtn.addEventListener("click", ()=>{
+    state.photo.panX = 0; state.photo.panY = 0; state.photo.zoom = 1; zoomRange.value = 1;
+    updateCropDomTransform();
+    scheduleRender();
+  });
+
+  zoomRange.addEventListener("input", ()=>{
+    state.photo.zoom = parseFloat(zoomRange.value);
+    updateCropDomTransform();
+    scheduleRender();
+  });
+
+  // Photo Filter Style Pills
+  document.querySelectorAll(".style-pill").forEach(pill=>{
+    pill.addEventListener("click", ()=>{
+      document.querySelectorAll(".style-pill").forEach(p=>p.classList.remove("active"));
+      pill.classList.add("active");
+      state.photoStyle = pill.dataset.style;
+      scheduleRender();
+    });
+  });
+
+  /* ---------------------------------------------------------
+   * Pointer & Drag Navigation Engine for Cropper
+   * --------------------------------------------------------- */
+  let dragging = false, dragStart = {x:0,y:0}, panStart = {x:0,y:0};
+
+  function pointerDown(e){
+    if(!state.photo.img) return;
+    dragging = true;
+    const p = getPoint(e);
+    dragStart = p;
+    panStart = { x: state.photo.panX, y: state.photo.panY };
+    try {
+      if(cropFrame.setPointerCapture && e.pointerId !== undefined){
+        cropFrame.setPointerCapture(e.pointerId);
+      }
+    } catch(err){}
+  }
+
+  function pointerMove(e){
+    if(!dragging) return;
+    const p = getPoint(e);
+    const rect = cropFrame.getBoundingClientRect();
+    const slotW = rect.width || 300, slotH = rect.height || 350;
+    const params = getPhotoDrawParams(slotW, slotH);
+    if(!params) return;
+    const maxX = Math.max((params.dw - slotW)/2, 1);
+    const maxY = Math.max((params.dh - slotH)/2, 1);
+    const dxPx = p.x - dragStart.x, dyPx = p.y - dragStart.y;
+    state.photo.panX = clamp(panStart.x + dxPx / maxX, -1, 1);
+    state.photo.panY = clamp(panStart.y + dyPx / maxY, -1, 1);
+    updateCropDomTransform();
+    scheduleRender();
+  }
+
+  function pointerUp(e){
+    dragging = false;
+    try {
+      if(cropFrame.releasePointerCapture && e && e.pointerId !== undefined){
+        cropFrame.releasePointerCapture(e.pointerId);
+      }
+    } catch(err){}
+  }
+
+  function getPoint(e){
+    if(e.touches && e.touches[0]) return { x:e.touches[0].clientX, y:e.touches[0].clientY };
+    return { x:e.clientX, y:e.clientY };
+  }
+  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+
+  cropFrame.addEventListener("pointerdown", pointerDown);
+  window.addEventListener("pointermove", pointerMove);
+  window.addEventListener("pointerup", pointerUp);
+  window.addEventListener("pointercancel", pointerUp);
+
+  window.addEventListener("resize", ()=> requestAnimationFrame(updateCropDomTransform));
+
+  /* ---------------------------------------------------------
+   * Form Inputs & Custom Role
+   * --------------------------------------------------------- */
+  nameInput.addEventListener("input", ()=>{
+    state.name = nameInput.value;
+    if(state.name.trim()) setError(nameGroup, false);
+    updateTitle();
+    scheduleRender();
+    updateTracker();
+  });
+
+  roleSelect.addEventListener("change", ()=>{
+    if(roleSelect.value === "Other"){
+      roleCustom.style.display = "block";
+      state.role = roleCustom.value;
+      roleCustom.focus();
+    } else {
+      roleCustom.style.display = "none";
+      state.role = roleSelect.value;
+    }
+    updateTitle();
+    scheduleRender();
+  });
+
+  roleCustom.addEventListener("input", ()=>{
+    state.role = roleCustom.value;
+    updateTitle();
+    scheduleRender();
+  });
+
+  buildingInput.addEventListener("input", ()=>{
+    state.building = buildingInput.value;
+    updateTitle();
+    scheduleRender();
+  });
+
+  vibeRow.addEventListener("click", (e)=>{
+    const btn = e.target.closest(".chip");
+    if(!btn) return;
+    const already = btn.classList.contains("active");
+    [...vibeRow.querySelectorAll(".chip")].forEach(c=>c.classList.remove("active"));
+    if(already){
+      state.vibe = "";
+    } else {
+      btn.classList.add("active");
+      state.vibe = btn.dataset.vibe;
+    }
+    updateTitle();
+    scheduleRender();
+  });
+
+  shuffleTitleBtn.addEventListener("click", ()=>{
+    state.titleSeed++;
+    updateTitle();
+    scheduleRender();
+    showToast("Generated new title 🎲");
+  });
+
+  /* ---------------------------------------------------------
+   * Generation & Export Engine
+   * --------------------------------------------------------- */
+  function validate(){
+    let ok = true;
+    if(!state.photo.img){
+      setError(photoGroup, true);
+      shake(photoGroup);
+      ok = false;
+    }
+    if(!state.name.trim()){
+      setError(nameGroup, true);
+      shake(nameGroup);
+      ok = false;
+    }
+    return ok;
+  }
+
+  async function handleGenerate(e){
+    if(e) e.preventDefault();
+    if(!validate()){
+      generateStatus.textContent = "";
+      const firstError = document.querySelector(".has-error");
+      if(firstError) firstError.scrollIntoView({behavior:"smooth", block:"center"});
+      return;
+    }
+    generateBtn.disabled = true;
+    stickyGenerateBtn.disabled = true;
+    generateStatus.textContent = "GENERATING GRAPHIC…";
+
+    updateTitle();
+    await new Promise(r=>setTimeout(r, 300));
+
+    const outCanvas = document.createElement("canvas");
+    const outW = state.format === "A" ? 1080 : 1080;
+    const outH = state.format === "A" ? 1080 : 1350;
+    outCanvas.width = outW; outCanvas.height = outH;
+
+    drawCard(outCanvas.getContext("2d"), outW, outH);
+
+    generateStatus.textContent = "YOUR GRAPHIC IS READY!";
+
+    outCanvas.toBlob((blob)=>{
+      if(resultImg.dataset.blobUrl){ URL.revokeObjectURL(resultImg.dataset.blobUrl); }
+      const url = URL.createObjectURL(blob);
+      resultImg.src = url;
+      resultImg.dataset.blobUrl = url;
+      state.exportBlob = blob;
+
+      resultTitle.textContent = state.format === "A" ? "Your PFP Frame is ready." : "Your Builder ID is ready.";
+      showResult();
+      generateBtn.disabled = false;
+      stickyGenerateBtn.disabled = false;
+      generateStatus.textContent = "";
+    }, "image/png", 0.98);
+  }
+
+  builderForm.addEventListener("submit", handleGenerate);
+  stickyGenerateBtn.addEventListener("click", handleGenerate);
+
+  function showResult(){
+    resultSection.classList.add("active");
+    updateTracker();
+    requestAnimationFrame(()=> resultSection.scrollIntoView({behavior:"smooth", block:"start"}));
+  }
+
+  /* ---------------------------------------------------------
+   * Export Actions: Download, Share on X, Copy Image, Copy Caption
+   * --------------------------------------------------------- */
+  function getCaption(){
+    return `I just generated my HH Goa 2026 ${state.format === "A" ? "PFP Frame" : "Builder ID"}! 🚀\n\nSee you in Goa.\n\n#FrameInGoa`;
+  }
+
+  downloadBtn.addEventListener("click", ()=>{
+    try{
+      const a = document.createElement("a");
+      const safeName = (state.name || "builder").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+      const prefix = state.format === "A" ? "hh-goa-2026-pfp" : "hh-goa-2026-builder-id";
+      a.href = resultImg.src;
+      a.download = `${prefix}-${safeName || "card"}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showToast("Downloaded graphic ✓");
+    }catch(err){
+      showToast("Couldn't export graphic. Try again.");
+    }
+  });
+
+  shareXBtn.addEventListener("click", async ()=>{
+    const caption = getCaption();
+    // Native Web Share if file sharing supported (Mobile Safari / Android Chrome)
+    if(state.exportBlob && navigator.canShare){
+      const file = new File([state.exportBlob], "hh-goa-2026-graphic.png", { type: "image/png" });
+      if(navigator.canShare({ files: [file] })){
+        try{
+          await navigator.share({
+            title: "HH Goa 2026 Builder ID",
+            text: caption,
+            files: [file]
+          });
+          showToast("Shared successfully ✓");
+          return;
+        }catch(err){
+          // User cancelled or unsupported
+        }
+      }
+    }
+
+    // Web Fallback to Twitter Intent
+    const text = encodeURIComponent(caption);
+    const url = `https://twitter.com/intent/tweet?text=${text}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
+
+  copyImgBtn.addEventListener("click", async ()=>{
+    if(!state.exportBlob){
+      showToast("Image not ready yet.");
+      return;
+    }
+    try {
+      if(navigator.clipboard && window.ClipboardItem){
+        await navigator.clipboard.write([
+          new ClipboardItem({ "image/png": state.exportBlob })
+        ]);
+        showToast("Image copied to clipboard! Paste in X ✓");
+      } else {
+        showToast("Clipboard image copy not supported on this browser.");
+      }
+    } catch(err) {
+      showToast("Couldn't copy image. Use Download instead.");
+    }
+  });
+
+  copyCaptionBtn.addEventListener("click", async ()=>{
+    try{
+      await navigator.clipboard.writeText(getCaption());
+      showToast("Caption & #FrameInGoa copied ✓");
+    }catch(err){
+      showToast("Couldn't copy caption automatically.");
+    }
+  });
+
+  restartBtn.addEventListener("click", ()=>{
+    state.name=""; state.role=""; state.building=""; state.vibe=""; state.title=""; state.titleSeed=0;
+    state.photo = { img:null, natW:0, natH:0, zoom:1, panX:0, panY:0 };
+    nameInput.value=""; roleSelect.value=""; roleCustom.value=""; roleCustom.style.display="none";
+    buildingInput.value="";
+    [...vibeRow.querySelectorAll(".chip")].forEach(c=>c.classList.remove("active"));
+    cropperWrap.classList.remove("active");
+    dropzone.style.display = "";
+    fileInput.value = ""; cameraInput.value = "";
+    setError(photoGroup,false); setError(nameGroup,false);
+    resultSection.classList.remove("active");
+    if(resultImg.dataset.blobUrl){ URL.revokeObjectURL(resultImg.dataset.blobUrl); }
+    scheduleRender();
+    updateTracker();
+    $("builder").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+
+  /* Hero CTA button scroll */
+  $("ctaCreate").addEventListener("click", ()=>{
+    $("builder").scrollIntoView({behavior:"smooth", block:"start"});
+    nameInput.focus({preventScroll:true});
+  });
+
+  /* ---------------------------------------------------------
+   * Boot & Font Ready Initialization
+   * --------------------------------------------------------- */
+  function boot(){
+    updateTitle();
+    updateTracker();
+    scheduleRender();
+    renderHeroExample();
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(()=>{
+        scheduleRender();
+        renderHeroExample();
+      });
+    }
+    setTimeout(renderHeroExample, 400);
+  }
+  boot();
+})();
+</script>
+</body>
+</html>
