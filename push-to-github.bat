@@ -1,21 +1,19 @@
 @echo off
 echo ========================================================
-echo Pushing HH Goa 2026 Generator to GitHub
-echo Repository: https://github.com/omii1177/omkar-demo-.git
+echo Pushing Omkar's Portfolio to GitHub
+echo Repository: https://github.com/omii1177/omkarcollage.git
 echo ========================================================
 
 cd /d "c:\Users\omkar\Downloads\collage project"
 
-git init
-git remote add origin https://github.com/omii1177/omkar-demo-.git
-git remote set-url origin https://github.com/omii1177/omkar-demo-.git
+git remote set-url origin https://github.com/omii1177/omkarcollage.git
 git branch -M main
 git add .
-git commit -m "Initial commit - HH Goa 2026 Builder ID & PFP Frame Generator"
+git commit -m "Update portfolio project and assets"
 git push -u origin main --force
 
 echo.
 echo ========================================================
-echo Successfully pushed to https://github.com/omii1177/omkar-demo-.git!
+echo Successfully pushed to https://github.com/omii1177/omkarcollage.git!
 echo ========================================================
 pause
