@@ -6,7 +6,7 @@
 <title>Omkar Sathe — ENTC Student, Developer & AI/ML Explorer</title>
 <meta name="description" content="Portfolio of Omkar Sathe, a second-year ENTC engineering student at SPPU exploring web development, AI/ML, and creative technology.">
 <meta property="og:title" content="Omkar Sathe — Developer Portfolio">
-<meta property="og:description" content="ENTC Student • Web Engineering • AI/ML Explorer">
+<meta property="og:description" content="ENTC Student • Web Engineering • AI/ML Explorer • Hacker House Goa 2026">
 <meta property="og:type" content="website">
 
 <!-- Fonts -->
@@ -25,17 +25,17 @@
     
     --border-subtle: #E4E4E7;
     --border-strong: #D4D4D8;
-    --border-accent: #2563EB;
+
+    /* Theme Palette Variables - Modifiable via Accent Switcher */
+    --accent: #2563EB;
+    --accent-hover: #1D4ED8;
+    --accent-light: rgba(37, 99, 235, 0.08);
+    --accent-subtle: rgba(37, 99, 235, 0.14);
 
     --text-main: #18181B;
     --text-body: #52525B;
     --text-muted: #71717A;
     --text-light: #A1A1AA;
-
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
-    --accent-light: rgba(37, 99, 235, 0.08);
-    --accent-subtle: rgba(37, 99, 235, 0.14);
 
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.05);
@@ -50,6 +50,26 @@
     --font-display: 'Archivo Black', 'Inter', sans-serif;
 
     --container-width: 1140px;
+  }
+
+  /* Color Theme Overrides */
+  body.theme-emerald {
+    --accent: #059669;
+    --accent-hover: #047857;
+    --accent-light: rgba(5, 150, 105, 0.08);
+    --accent-subtle: rgba(5, 150, 105, 0.14);
+  }
+  body.theme-indigo {
+    --accent: #4F46E5;
+    --accent-hover: #4338CA;
+    --accent-light: rgba(79, 70, 229, 0.08);
+    --accent-subtle: rgba(79, 70, 229, 0.14);
+  }
+  body.theme-amber {
+    --accent: #D97706;
+    --accent-hover: #B45309;
+    --accent-light: rgba(217, 119, 6, 0.08);
+    --accent-subtle: rgba(217, 119, 6, 0.14);
   }
 
   *, *::before, *::after {
@@ -81,7 +101,6 @@
     overflow-x: hidden;
   }
 
-  /* Subtle background pattern */
   .bg-pattern {
     position: fixed;
     inset: 0;
@@ -114,7 +133,6 @@
     padding: 0 24px;
   }
 
-  /* TYPOGRAPHY HELPERS */
   h1, h2, h3, h4 {
     color: var(--text-main);
     letter-spacing: -0.025em;
@@ -141,7 +159,7 @@
   .section-subtitle {
     font-size: 1.05rem;
     color: var(--text-muted);
-    max-width: 580px;
+    max-width: 620px;
   }
 
   /* NAVBAR */
@@ -183,12 +201,13 @@
     height: 7px;
     background-color: var(--accent);
     border-radius: 50%;
+    transition: background-color 0.2s ease;
   }
 
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 24px;
     list-style: none;
   }
 
@@ -202,6 +221,34 @@
   .nav-link:hover {
     color: var(--accent);
   }
+
+  /* Interactive Theme Color Switcher */
+  .theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-secondary);
+    padding: 4px 8px;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .theme-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .theme-dot:hover {
+    transform: scale(1.25);
+  }
+
+  .theme-dot.blue { background-color: #2563EB; }
+  .theme-dot.emerald { background-color: #059669; }
+  .theme-dot.indigo { background-color: #4F46E5; }
+  .theme-dot.amber { background-color: #D97706; }
 
   .btn-nav-cta {
     font-size: 0.875rem;
@@ -246,7 +293,7 @@
   .btn-primary:hover {
     background-color: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
   }
 
   .btn-primary .arrow {
@@ -280,13 +327,13 @@
 
   /* HERO SECTION */
   .hero {
-    padding: 80px 0 60px;
+    padding: 70px 0 50px;
     position: relative;
   }
 
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 48px;
     align-items: center;
   }
@@ -343,7 +390,7 @@
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    padding: 28px;
+    padding: 24px;
     box-shadow: var(--shadow-md);
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -358,8 +405,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--border-subtle);
   }
 
@@ -369,19 +416,13 @@
     gap: 14px;
   }
 
-  .dev-avatar {
-    width: 48px;
-    height: 48px;
+  .dev-avatar-img {
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background: var(--accent-light);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.1rem;
+    object-fit: cover;
     border: 2px solid var(--bg-card);
-    box-shadow: 0 0 0 1px var(--border-subtle);
+    box-shadow: 0 0 0 1px var(--border-strong);
   }
 
   .dev-details h3 {
@@ -421,17 +462,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .metric-item {
     background: var(--bg-secondary);
-    padding: 12px;
+    padding: 10px 12px;
     border-radius: var(--radius-sm);
   }
 
   .metric-label {
-    font-size: 0.725rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
     font-weight: 500;
     text-transform: uppercase;
@@ -439,18 +480,17 @@
   }
 
   .metric-val {
-    font-size: 0.925rem;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--text-main);
     margin-top: 2px;
   }
 
-  /* Creative Rotator Pill */
   .exploring-rotator {
     background: var(--bg-secondary);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 12px 16px;
+    padding: 10px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -465,21 +505,21 @@
 
   .rotator-label {
     font-family: var(--font-mono);
-    font-size: 0.725rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
     font-weight: 600;
   }
 
   .rotator-topic {
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--accent);
     transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
   /* SECTION STYLING */
   section {
-    padding: 90px 0;
+    padding: 85px 0;
   }
 
   section.alt-bg {
@@ -487,7 +527,7 @@
   }
 
   .section-header {
-    margin-bottom: 48px;
+    margin-bottom: 44px;
   }
 
   /* ABOUT SECTION */
@@ -509,7 +549,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 28px;
+    margin-top: 24px;
   }
 
   .chip {
@@ -533,7 +573,7 @@
     box-shadow: var(--shadow-md);
   }
 
-  /* Chess Interactive Widget */
+  /* Interactive Chess Widget with Chess.com Link */
   .chess-widget {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -548,6 +588,8 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .chess-title {
@@ -582,6 +624,135 @@
     padding: 12px;
     border-radius: var(--radius-sm);
     line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .chess-profile-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* PHOTO GALLERY SECTION */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .gallery-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+  }
+
+  .gallery-img-wrap {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-secondary);
+  }
+
+  .gallery-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-card:hover .gallery-img-wrap img {
+    transform: scale(1.05);
+  }
+
+  .gallery-caption {
+    padding: 16px;
+  }
+
+  .gallery-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .gallery-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  /* LIGHTBOX MODAL */
+  .lightbox-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(24, 24, 27, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .lightbox-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .lightbox-content {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    max-width: 720px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .lightbox-body img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+  }
+
+  .lightbox-info {
+    padding: 20px 24px;
   }
 
   /* PROJECTS SECTION */
@@ -605,7 +776,7 @@
 
   .featured-img-wrap {
     background: #EDE7DA;
-    padding: 32px;
+    padding: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -680,11 +851,11 @@
 
   .project-actions {
     display: flex;
-    gap: 14px;
+    gap: 12px;
     align-items: center;
+    flex-wrap: wrap;
   }
 
-  /* Grid projects */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -732,15 +903,33 @@
     margin-top: 12px;
   }
 
-  .project-link:hover .arrow {
-    transform: translateX(4px);
-  }
-
   /* HACKATHON EMBEDDED GENERATOR SECTION */
   .hackathon-section {
     background: var(--bg-primary);
     border-top: 1px solid var(--border-subtle);
     border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .generator-banner {
+    background: var(--accent-light);
+    border: 1px solid var(--accent-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .generator-banner p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .generator-app-card {
@@ -887,7 +1076,6 @@
     border-color: var(--accent);
   }
 
-  /* Result container */
   .result-card {
     display: none;
     margin-top: 36px;
@@ -1066,6 +1254,16 @@
     color: var(--text-body);
     font-style: italic;
     line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .card-action-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
 
   /* CONTACT & FOOTER */
@@ -1083,7 +1281,7 @@
   .social-links {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 14px;
     margin-top: 32px;
     flex-wrap: wrap;
   }
@@ -1094,10 +1292,13 @@
     font-weight: 600;
     color: var(--text-main);
     background: var(--bg-secondary);
-    padding: 10px 20px;
+    padding: 10px 18px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-subtle);
     transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
 
   .social-link:hover {
@@ -1127,7 +1328,7 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    z-index: 200;
+    z-index: 400;
     background: var(--text-main);
     color: #FFFFFF;
     font-size: 0.875rem;
@@ -1158,36 +1359,22 @@
     transform: translateY(0);
   }
 
-  /* RESPONSIVE MEDIA QUERIES */
   @media (max-width: 900px) {
     .hero-grid, .about-grid, .featured-project-card, .builder-grid {
       grid-template-columns: 1fr;
       gap: 36px;
     }
 
-    .hero {
-      padding: 50px 0 40px;
-    }
-
-    .featured-content {
-      padding: 28px;
-    }
-
-    .nav-links {
-      display: none;
-    }
-
-    .mobile-toggle {
-      display: block;
-    }
+    .hero { padding: 50px 0 35px; }
+    .featured-content { padding: 28px; }
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
 
     .nav-links.mobile-open {
       display: flex;
       flex-direction: column;
       position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
+      top: 100%; left: 0; right: 0;
       background: #FFFFFF;
       padding: 20px;
       border-bottom: 1px solid var(--border-subtle);
@@ -1211,6 +1398,7 @@
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#gallery" class="nav-link">Photos</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
       <li><a href="#hackathon" class="nav-link">Hackathons</a></li>
       <li><a href="#learning" class="nav-link">Learning</a></li>
@@ -1218,9 +1406,17 @@
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
 
-    <div style="display: flex; align-items: center; gap: 16px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <!-- Interactive Palette Switcher -->
+      <div class="theme-switcher" title="Choose Accent Color Theme">
+        <span class="theme-dot blue" data-theme="blue" title="Blue Accent"></span>
+        <span class="theme-dot emerald" data-theme="emerald" title="Emerald Accent"></span>
+        <span class="theme-dot indigo" data-theme="indigo" title="Indigo Accent"></span>
+        <span class="theme-dot amber" data-theme="amber" title="Amber Accent"></span>
+      </div>
+
       <a href="#contact" class="btn-nav-cta">Let's Connect →</a>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">☰</button>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">☰</button>
     </div>
   </div>
 </nav>
@@ -1253,12 +1449,12 @@
       </div>
     </div>
 
-    <!-- Floating Developer Card Visual -->
+    <!-- Developer Profile Card Visual -->
     <div class="hero-right reveal">
       <div class="hero-card">
         <div class="card-top">
           <div class="dev-identity">
-            <div class="dev-avatar">OS</div>
+            <img src="./images/omkar_portrait.png" alt="Omkar Sathe" class="dev-avatar-img">
             <div class="dev-details">
               <h3>OMKAR SATHE</h3>
               <p>ENTC Student @ SPPU</p>
@@ -1281,7 +1477,7 @@
           </div>
         </div>
 
-        <!-- Creative Rotator Pill -->
+        <!-- Rotator Pill -->
         <div class="exploring-rotator" id="exploringRotator" title="Click to cycle topic">
           <span class="rotator-label">CURRENTLY EXPLORING</span>
           <span class="rotator-topic" id="rotatorTopic">AI / ML</span>
@@ -1305,14 +1501,14 @@
           I am a second-year Electronics & Telecommunication (ENTC) engineering student at SPPU (Savitribai Phule Pune University) who believes the best way to understand systems is by constructing them from scratch.
         </p>
         <p>
-          My technical focus combines core electronics principles with modern web engineering, deep learning algorithms, and functional web applications. Whether it's an interactive client-side generator or a machine learning prototype, I thrive on turning ideas into functional code.
+          My focus combines core electronics principles with modern web engineering, deep learning algorithms, and functional web applications. Whether it's an interactive client-side web generator or training an ML model, I thrive on turning ideas into real code.
         </p>
       </div>
 
       <div class="interest-chips">
         <div class="chip">📚 Books</div>
         <div class="chip">🏸 Badminton</div>
-        <div class="chip">♟ Chess</div>
+        <a href="https://www.chess.com/member/omkar11770" target="_blank" rel="noopener" class="chip" style="cursor:pointer;" title="Visit Chess.com profile">♟ Chess (omkar11770) ↗</a>
         <div class="chip">🤖 AI/ML</div>
         <div class="chip">💻 Building projects</div>
       </div>
@@ -1320,11 +1516,57 @@
       <!-- Chess Interactive Strategy Micro-Detail -->
       <div class="chess-widget">
         <div class="chess-header">
-          <span class="chess-title">♟ Strategic Focus</span>
+          <span class="chess-title">♟ Strategic Focus & Chess</span>
           <button class="chess-move-btn" id="chessMoveBtn">Click Move: e2 → e4</button>
         </div>
         <div class="chess-board-preview" id="chessStatus">
           Position: Opening Setup. Patience & positional control lead to long-term results.
+        </div>
+        <a href="https://www.chess.com/member/omkar11770" target="_blank" rel="noopener" class="chess-profile-link">
+          Challenge me on Chess.com (omkar11770) ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY SECTION -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-tag">02 / GALLERY</span>
+      <h2 class="section-title">Life & Workspace</h2>
+      <p class="section-subtitle">Moments from college, hackathons, building projects, and workspace focus.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card reveal" data-title="Developer Profile" data-desc="Focusing on software architecture and AI model exploration." data-img="./images/omkar_portrait.png">
+        <div class="gallery-img-wrap">
+          <img src="./images/omkar_portrait.png" alt="Omkar Sathe Profile">
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-tag">Developer Profile</div>
+          <div class="gallery-title">Omkar Sathe • ENTC Engineering</div>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-title="Creative Workspace" data-desc="Building responsive web interfaces and client-side web tools." data-img="./images/omkar_workspace.png">
+        <div class="gallery-img-wrap">
+          <img src="./images/omkar_workspace.png" alt="Workspace Setup">
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-tag">Workspace & Code</div>
+          <div class="gallery-title">Web Engineering & UI Development</div>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-title="Hackathon Presentation" data-desc="Presenting client-side canvas tools built for Hacker House Goa 2026." data-img="./images/omkar_hackathon.png">
+        <div class="gallery-img-wrap">
+          <img src="./images/omkar_hackathon.png" alt="Hackathon Event">
+        </div>
+        <div class="gallery-caption">
+          <div class="gallery-tag">Hackathon & Projects</div>
+          <div class="gallery-title">Hacker House Goa 2026 Presentation</div>
         </div>
       </div>
     </div>
@@ -1332,10 +1574,10 @@
 </section>
 
 <!-- PROJECTS SECTION -->
-<section id="projects">
+<section id="projects" class="alt-bg">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">02 / PROJECTS</span>
+      <span class="section-tag">03 / PROJECTS</span>
       <h2 class="section-title">Selected Work</h2>
       <p class="section-subtitle">Small ideas, real projects, and things I'm learning by building.</p>
     </div>
@@ -1350,7 +1592,7 @@
         <span class="badge-hackathon">⚡ HACKATHON PROJECT</span>
         <h3 class="featured-title">Hacker House Goa ID Card Generator</h3>
         <p class="featured-desc">
-          A high-performance client-side graphic generator built for Hacker House Goa 2026. Generates custom 4:5 event badges and 1:1 PFP profile frames with custom photo filters, title shuffler, HEIC support, and Web Share integration.
+          A high-performance client-side graphic generator built for Hacker House Goa 2026. Generates custom 4:5 event badges and 1:1 PFP frames with custom filters, photo cropping, and Web Share integration.
         </p>
 
         <div class="project-tags">
@@ -1363,7 +1605,10 @@
 
         <div class="project-actions">
           <a href="#hackathon" class="btn-primary">
-            Try Live Generator <span class="arrow">→</span>
+            Try Embedded Generator <span class="arrow">→</span>
+          </a>
+          <a href="https://hackerhousetask.vercel.app/" target="_blank" rel="noopener" class="btn-secondary">
+            Live Demo (Vercel) ↗
           </a>
         </div>
       </div>
@@ -1414,14 +1659,22 @@
 </section>
 
 <!-- HACKATHON FEATURE SECTION -->
-<section id="hackathon" class="hackathon-section alt-bg">
+<section id="hackathon" class="hackathon-section">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">03 / HACKATHON</span>
+      <span class="section-tag">04 / HACKATHON</span>
       <h2 class="section-title">Built for a Hackathon. Built to learn.</h2>
       <p class="section-subtitle">
         Interactive demonstration of the Hacker House Goa 2026 Builder ID & PFP Generator built entirely client-side with Canvas rendering.
       </p>
+    </div>
+
+    <!-- Live Demo Banner -->
+    <div class="generator-banner reveal">
+      <p>🚀 Live Production Link: <strong>https://hackerhousetask.vercel.app/</strong></p>
+      <a href="https://hackerhousetask.vercel.app/" target="_blank" rel="noopener" class="btn-primary" style="padding:8px 16px; font-size:0.85rem;">
+        Open Fullscreen Vercel App ↗
+      </a>
     </div>
 
     <!-- Generator App Container -->
@@ -1439,7 +1692,6 @@
 
       <form id="builderForm" onsubmit="return false;">
         <div class="builder-grid">
-          <!-- Form controls -->
           <div>
             <div class="field-group" id="groupPhoto">
               <label class="field-label">1. Upload Photo <span style="color:#DC2626">*</span></label>
@@ -1481,7 +1733,6 @@
             </div>
           </div>
 
-          <!-- Text controls -->
           <div>
             <div class="field-group" id="groupName">
               <label class="field-label">2. Full Name <span style="color:#DC2626">*</span></label>
@@ -1547,10 +1798,10 @@
 </section>
 
 <!-- LEARNING SECTION -->
-<section id="learning">
+<section id="learning" class="alt-bg">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">04 / LEARNING</span>
+      <span class="section-tag">05 / LEARNING</span>
       <h2 class="section-title">Currently Learning</h2>
       <p class="section-subtitle">An honest snapshot of what I'm actively studying and engineering right now.</p>
     </div>
@@ -1587,10 +1838,10 @@
 </section>
 
 <!-- JOURNEY SECTION -->
-<section id="journey" class="alt-bg">
+<section id="journey">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">05 / JOURNEY</span>
+      <span class="section-tag">06 / JOURNEY</span>
       <h2 class="section-title">My Journey</h2>
       <p class="section-subtitle">Key steps and milestones in my engineering education and development path.</p>
     </div>
@@ -1619,7 +1870,7 @@
         <div class="timeline-year">Early 2026</div>
         <h3 class="timeline-title">Hacker House Goa Project</h3>
         <p class="timeline-desc">
-          Engineered the Builder ID & PFP Frame Generator application for Hacker House Goa 2026, delivering zero-backend client-side canvas rendering.
+          Engineered the Builder ID & PFP Frame Generator application for Hacker House Goa 2026 (Live on Vercel: hackerhousetask.vercel.app).
         </p>
       </div>
 
@@ -1645,10 +1896,10 @@
 </section>
 
 <!-- PERSONALITY SECTION -->
-<section id="personality">
+<section id="personality" class="alt-bg">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">06 / PERSONALITY</span>
+      <span class="section-tag">07 / PERSONALITY</span>
       <h2 class="section-title">Beyond the screen</h2>
       <p class="section-subtitle">Habits and pursuits outside coding that keep my thinking sharp and balanced.</p>
     </div>
@@ -1670,16 +1921,19 @@
         <div class="personality-icon">♟</div>
         <h3 class="personality-title">Chess</h3>
         <p class="personality-quote">“Strategy, patience, positional awareness, and calculated decision-making multi-steps ahead.”</p>
+        <a href="https://www.chess.com/member/omkar11770" target="_blank" rel="noopener" class="card-action-link">
+          Play me on Chess.com (omkar11770) ↗
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact" class="alt-bg">
+<section id="contact">
   <div class="wrap">
     <div class="contact-box reveal">
-      <span class="section-tag">07 / CONTACT</span>
+      <span class="section-tag">08 / CONTACT</span>
       <h2 class="section-title" style="margin-bottom: 16px;">Let's Connect</h2>
       <p class="section-subtitle" style="margin: 0 auto 28px;">
         Whether you have an internship opportunity, project collaboration, or just want to talk AI/ML and web engineering — feel free to reach out!
@@ -1690,9 +1944,11 @@
       </a>
 
       <div class="social-links">
-        <a href="https://github.com" target="_blank" rel="noopener" class="social-link">GitHub ↗</a>
+        <a href="https://www.instagram.com/omiii_1177/?hl=en" target="_blank" rel="noopener" class="social-link">Instagram (@omiii_1177) ↗</a>
+        <a href="https://www.chess.com/member/omkar11770" target="_blank" rel="noopener" class="social-link">Chess.com (omkar11770) ↗</a>
+        <a href="https://hackerhousetask.vercel.app/" target="_blank" rel="noopener" class="social-link">HH Goa App ↗</a>
+        <a href="https://github.com/omii1177" target="_blank" rel="noopener" class="social-link">GitHub ↗</a>
         <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link">LinkedIn ↗</a>
-        <a href="https://x.com" target="_blank" rel="noopener" class="social-link">X (Twitter) ↗</a>
       </div>
     </div>
   </div>
@@ -1705,21 +1961,47 @@
       © 2026 Omkar Sathe • ENTC Engineering Student & Developer
     </div>
     <div>
-      Designed with light minimal precision
+      <a href="https://hackerhousetask.vercel.app/" target="_blank" rel="noopener" style="color:var(--accent); font-weight:600;">Hacker House Goa App ↗</a>
     </div>
   </div>
 </footer>
 
-<!-- Toast Notification Container -->
+<!-- LIGHTBOX POPUP MODAL -->
+<div class="lightbox-modal" id="lightboxModal">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-body">
+      <img id="lightboxImg" src="" alt="Full view">
+    </div>
+    <div class="lightbox-info">
+      <div class="gallery-tag" id="lightboxTag">TAG</div>
+      <h3 style="font-size:1.1rem; font-weight:700;" id="lightboxTitle">Title</h3>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-top:4px;" id="lightboxDesc">Description</p>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
 <div class="toast" id="toast">Message notification</div>
 
-<!-- Hidden Canvas for Canvas Generator Logic -->
+<!-- Hidden Canvas for Badge Logic -->
 <canvas id="outCanvas" width="1080" height="1350" style="display:none"></canvas>
 
 <!-- JAVASCRIPT APP LOGIC -->
 <script>
 (function(){
   'use strict';
+
+  /* ---------------------------------------------------------
+   * Accent Palette Switcher
+   * --------------------------------------------------------- */
+  document.querySelectorAll(".theme-dot").forEach(dot => {
+    dot.addEventListener("click", () => {
+      const theme = dot.dataset.theme;
+      document.body.className = theme === "blue" ? "" : `theme-${theme}`;
+      showToast(`Accent theme updated to ${theme.toUpperCase()} ✓`);
+    });
+  });
 
   /* ---------------------------------------------------------
    * Navbar Scroll & Mobile Toggle
@@ -1742,7 +2024,6 @@
     });
   }
 
-  // Close mobile nav when link clicked
   document.querySelectorAll(".nav-link").forEach(link => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("mobile-open");
@@ -1815,6 +2096,35 @@
   }
 
   /* ---------------------------------------------------------
+   * Lightbox Modal for Photo Gallery
+   * --------------------------------------------------------- */
+  const lightboxModal = document.getElementById("lightboxModal");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxTitle = document.getElementById("lightboxTitle");
+  const lightboxTag = document.getElementById("lightboxTag");
+  const lightboxDesc = document.getElementById("lightboxDesc");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  document.querySelectorAll(".gallery-card").forEach(card => {
+    card.addEventListener("click", () => {
+      lightboxImg.src = card.dataset.img;
+      lightboxTitle.textContent = card.dataset.title;
+      lightboxTag.textContent = card.querySelector(".gallery-tag").textContent;
+      lightboxDesc.textContent = card.dataset.desc;
+      lightboxModal.classList.add("active");
+    });
+  });
+
+  if(lightboxClose){
+    lightboxClose.addEventListener("click", () => lightboxModal.classList.remove("active"));
+  }
+  if(lightboxModal){
+    lightboxModal.addEventListener("click", (e) => {
+      if(e.target === lightboxModal) lightboxModal.classList.remove("active");
+    });
+  }
+
+  /* ---------------------------------------------------------
    * Toast Helper
    * --------------------------------------------------------- */
   const toast = document.getElementById("toast");
@@ -1848,12 +2158,7 @@
     titleSeed: 0,
     title: "",
     photoStyle: "original",
-    photo: {
-      img: null,
-      zoom: 1,
-      panX: 0,
-      panY: 0
-    },
+    photo: { img: null, zoom: 1, panX: 0, panY: 0 },
     exportBlob: null
   };
 
@@ -1861,7 +2166,6 @@
   const pillFormatB = document.getElementById("pillFormatB");
   const dropzone = document.getElementById("dropzone");
   const fileInput = document.getElementById("fileInput");
-  const cameraInput = document.getElementById("cameraInput");
   const cropperWrap = document.getElementById("cropperWrap");
   const changePhotoBtn = document.getElementById("changePhotoBtn");
   const zoomRange = document.getElementById("zoomRange");
@@ -1891,7 +2195,6 @@
   }
   updateTitle();
 
-  // Switch Format A/B
   function setFormat(fmt){
     state.format = fmt;
     if(fmt === "A"){
@@ -1953,7 +2256,6 @@
     });
   }
 
-  // Photo Style Filter Chips
   if(styleChips){
     styleChips.addEventListener("click", (e)=>{
       const btn = e.target.closest(".style-chip");
@@ -1966,7 +2268,6 @@
     });
   }
 
-  // Dropzone & Photo File Upload
   if(dropzone){
     dropzone.addEventListener("click", ()=> fileInput.click());
     dropzone.addEventListener("dragover", (e)=>{ e.preventDefault(); dropzone.style.borderColor = "var(--accent)"; });
@@ -1994,7 +2295,6 @@
 
   async function handleFile(file){
     let targetFile = file;
-    // HEIC support
     if(file.name.toLowerCase().match(/\.(heic|heif)$/)){
       if(window.heic2any){
         try {
@@ -2047,17 +2347,14 @@
     if(!canvasEl) return;
     const ctx = canvasEl.getContext("2d");
     if(format === "A"){
-      canvasEl.width = 1080;
-      canvasEl.height = 1080;
+      canvasEl.width = 1080; canvasEl.height = 1080;
       drawFormatA(ctx, 1080, 1080);
     } else {
-      canvasEl.width = 1080;
-      canvasEl.height = 1350;
+      canvasEl.width = 1080; canvasEl.height = 1350;
       drawFormatB(ctx, 1080, 1350);
     }
   }
 
-  // Placeholder Avatar Graphic
   let defaultAvatarCanvas = null;
   function getDefaultAvatar(){
     if(!defaultAvatarCanvas){
@@ -2116,16 +2413,9 @@
     ctx.clearRect(0,0,w,h);
     const PAPER = "#FAF9F6", INK = "#18181B", BLUE = "#2563EB";
 
-    // Background
-    ctx.fillStyle = PAPER;
-    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = PAPER; ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle = INK; ctx.lineWidth = 4; ctx.strokeRect(24,24,w-48,h-48);
 
-    // Outer frame
-    ctx.strokeStyle = INK;
-    ctx.lineWidth = 4;
-    ctx.strokeRect(24,24,w-48,h-48);
-
-    // Top Label
     ctx.fillStyle = BLUE;
     ctx.font = "700 22px 'IBM Plex Mono', monospace";
     ctx.fillText("HH GOA 2026", 64, 90);
@@ -2137,10 +2427,8 @@
     ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(64, 190); ctx.lineTo(w-64, 190); ctx.stroke();
 
-    // Photo Area
     const slotX = 64, slotY = 220, slotW = 420, slotH = 540;
-    ctx.fillStyle = "#E4E4E7";
-    ctx.fillRect(slotX, slotY, slotW, slotH);
+    ctx.fillStyle = "#E4E4E7"; ctx.fillRect(slotX, slotY, slotW, slotH);
 
     const activeImg = state.photo.img || getDefaultAvatar();
     const params = getPhotoDrawParams(slotW, slotH, activeImg);
@@ -2153,7 +2441,6 @@
     }
     ctx.strokeStyle = INK; ctx.lineWidth = 3; ctx.strokeRect(slotX, slotY, slotW, slotH);
 
-    // Name & Info Block
     const nameX = 520, nameY = 270;
     ctx.fillStyle = INK;
     const nameStr = (state.name || "OMKAR SATHE").toUpperCase();
@@ -2171,7 +2458,6 @@
       ctx.fillText(`BUILDING: ${state.building.toUpperCase()}`, nameX, nameY + 90);
     }
 
-    // Passport Title Stamp
     ctx.save();
     ctx.translate(w - 220, 620);
     ctx.rotate(-12 * Math.PI / 180);
@@ -2189,7 +2475,6 @@
     }
     ctx.restore();
 
-    // Footer
     const footY = h - 80;
     ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(64, footY - 30); ctx.lineTo(w-64, footY - 30); ctx.stroke();
@@ -2209,8 +2494,7 @@
     ctx.clearRect(0,0,w,h);
     const PAPER = "#FAF9F6", INK = "#18181B", BLUE = "#2563EB";
 
-    ctx.fillStyle = PAPER;
-    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = PAPER; ctx.fillRect(0,0,w,h);
 
     const slotX = 140, slotY = 140, slotW = 800, slotH = 800;
     const activeImg = state.photo.img || getDefaultAvatar();
@@ -2224,9 +2508,7 @@
       ctx.restore();
     }
 
-    // Frame Border
-    ctx.strokeStyle = INK;
-    ctx.lineWidth = 12;
+    ctx.strokeStyle = INK; ctx.lineWidth = 12;
     ctx.beginPath(); ctx.arc(w/2, h/2, 400, 0, Math.PI*2); ctx.stroke();
 
     ctx.fillStyle = BLUE;
@@ -2235,11 +2517,9 @@
     ctx.fillText("HH GOA 2026 • #FrameInGoa", w/2, h - 60);
   }
 
-  // Initial canvas render
   renderCanvas(outCanvas, "B");
   renderCanvas(featuredCanvas, "B");
 
-  // Handle Form Submit Generation
   if(generateBtn){
     generateBtn.addEventListener("click", ()=>{
       const nameVal = nameInput ? nameInput.value.trim() : "";
@@ -2264,7 +2544,6 @@
     });
   }
 
-  // Export Buttons
   if(downloadBtn){
     downloadBtn.addEventListener("click", ()=>{
       if(!resultImg.src) return;
@@ -2305,7 +2584,7 @@
   if(copyCaptionBtn){
     copyCaptionBtn.addEventListener("click", async ()=>{
       try {
-        await navigator.clipboard.writeText("Generated my HH Goa 2026 Builder Badge! 🚀\n#FrameInGoa");
+        await navigator.clipboard.writeText("Generated my HH Goa 2026 Builder Badge! 🚀\nhttps://hackerhousetask.vercel.app/\n#FrameInGoa");
         showToast("Caption copied ✓");
       } catch(e){
         showToast("Couldn't copy caption.");
