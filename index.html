@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Omkar Sathe — ENTC Student, Developer & AI/ML Explorer</title>
-<meta name="description" content="Portfolio of Omkar Sathe, a second-year ENTC engineering student at SPPU exploring web development, AI/ML, and creative technology.">
+<title>Omkar Sathe — Developer & AI/ML Explorer</title>
+<meta name="description" content="Portfolio of Omkar Sathe, a developer at SPPU exploring web development, AI/ML, and creative technology.">
 <meta property="og:title" content="Omkar Sathe — Developer Portfolio">
-<meta property="og:description" content="ENTC Student • Web Engineering • AI/ML Explorer • Hacker House Goa 2026">
+<meta property="og:description" content="Developer • Web Engineering • AI/ML Explorer • Hacker House Goa 2026">
 <meta property="og:type" content="website">
 
 <!-- Fonts -->
@@ -207,7 +207,7 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 28px;
     list-style: none;
   }
 
@@ -385,7 +385,7 @@
     flex-wrap: wrap;
   }
 
-  /* Floating Developer Card */
+  /* Developer Profile Card Visual */
   .hero-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -417,12 +417,13 @@
   }
 
   .dev-avatar-img {
-    width: 52px;
-    height: 52px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center top;
     border: 2px solid var(--bg-card);
-    box-shadow: 0 0 0 1px var(--border-strong);
+    box-shadow: 0 0 0 2px var(--border-strong);
   }
 
   .dev-details h3 {
@@ -530,12 +531,33 @@
     margin-bottom: 44px;
   }
 
-  /* ABOUT SECTION */
+  /* ABOUT SECTION WITH PROFILE PHOTO CARD */
   .about-grid {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 60px;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 50px;
     align-items: start;
+  }
+
+  .about-photo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .about-photo-card img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .about-photo-meta {
+    padding: 16px;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-primary);
   }
 
   .about-text p {
@@ -573,7 +595,7 @@
     box-shadow: var(--shadow-md);
   }
 
-  /* Interactive Chess Widget with Chess.com Link */
+  /* Interactive Chess Widget */
   .chess-widget {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -634,125 +656,6 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-  }
-
-  /* PHOTO GALLERY SECTION */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-  }
-
-  .gallery-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  }
-
-  .gallery-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--accent);
-  }
-
-  .gallery-img-wrap {
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-    background: var(--bg-secondary);
-  }
-
-  .gallery-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .gallery-card:hover .gallery-img-wrap img {
-    transform: scale(1.05);
-  }
-
-  .gallery-caption {
-    padding: 16px;
-  }
-
-  .gallery-tag {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 4px;
-  }
-
-  .gallery-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text-main);
-  }
-
-  /* LIGHTBOX MODAL */
-  .lightbox-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 300;
-    background: rgba(24, 24, 27, 0.85);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
-
-  .lightbox-modal.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .lightbox-content {
-    background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    max-width: 720px;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 10;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.6);
-    color: #FFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-  .lightbox-body img {
-    width: 100%;
-    max-height: 480px;
-    object-fit: cover;
-  }
-
-  .lightbox-info {
-    padding: 20px 24px;
   }
 
   /* PROJECTS SECTION */
@@ -1398,7 +1301,6 @@
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#gallery" class="nav-link">Photos</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
       <li><a href="#hackathon" class="nav-link">Hackathons</a></li>
       <li><a href="#learning" class="nav-link">Learning</a></li>
@@ -1407,7 +1309,7 @@
     </ul>
 
     <div style="display: flex; align-items: center; gap: 14px;">
-      <!-- Interactive Palette Switcher -->
+      <!-- Palette Switcher -->
       <div class="theme-switcher" title="Choose Accent Color Theme">
         <span class="theme-dot blue" data-theme="blue" title="Blue Accent"></span>
         <span class="theme-dot emerald" data-theme="emerald" title="Emerald Accent"></span>
@@ -1427,7 +1329,7 @@
     <div class="hero-left reveal">
       <div class="hero-eyebrow">
         <span class="dot"></span>
-        ENTC STUDENT • DEVELOPER • AI/ML EXPLORER
+        DEVELOPER • AI/ML EXPLORER
       </div>
 
       <h1 class="hero-heading">
@@ -1436,7 +1338,7 @@
       </h1>
 
       <p class="hero-subtitle">
-        I'm a second-year ENTC student at SPPU exploring web development, AI/ML and creative technology through projects, experiments and hackathons.
+        I'm a developer at SPPU exploring web development, AI/ML and creative technology through projects, experiments and hackathons.
       </p>
 
       <div class="hero-cta">
@@ -1449,15 +1351,15 @@
       </div>
     </div>
 
-    <!-- Developer Profile Card Visual -->
+    <!-- Developer Profile Card Visual with Omkar's Photo -->
     <div class="hero-right reveal">
       <div class="hero-card">
         <div class="card-top">
           <div class="dev-identity">
-            <img src="./images/omkar_portrait.png" alt="Omkar Sathe" class="dev-avatar-img">
+            <img src="./images/omkar_profile.jpg" alt="Omkar Sathe" class="dev-avatar-img">
             <div class="dev-details">
               <h3>OMKAR SATHE</h3>
-              <p>ENTC Student @ SPPU</p>
+              <p>Developer @ SPPU</p>
             </div>
           </div>
           <div class="status-badge">
@@ -1491,17 +1393,25 @@
 <section id="about" class="alt-bg">
   <div class="wrap about-grid">
     <div class="about-left reveal">
-      <span class="section-tag">01 / ABOUT</span>
-      <h2 class="section-title">A little about me.</h2>
+      <div class="about-photo-card">
+        <img src="./images/omkar_profile.jpg" alt="Omkar Sathe Profile">
+        <div class="about-photo-meta">
+          <div style="font-weight:700; color:var(--text-main); font-size:0.95rem;">Omkar Sathe</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Developer & AI/ML Explorer • SPPU</div>
+        </div>
+      </div>
     </div>
 
     <div class="about-right reveal">
+      <span class="section-tag">01 / ABOUT</span>
+      <h2 class="section-title">A little about me.</h2>
+      
       <div class="about-text">
         <p>
-          I am a second-year Electronics & Telecommunication (ENTC) engineering student at SPPU (Savitribai Phule Pune University) who believes the best way to understand systems is by constructing them from scratch.
+          I am a second-year engineering student at SPPU (Savitribai Phule Pune University) who believes the best way to understand systems is by constructing them from scratch.
         </p>
         <p>
-          My focus combines core electronics principles with modern web engineering, deep learning algorithms, and functional web applications. Whether it's an interactive client-side web generator or training an ML model, I thrive on turning ideas into real code.
+          My focus combines modern web engineering, deep learning algorithms, and functional web applications. Whether it's an interactive client-side web generator or training an AI model, I thrive on turning ideas into real code.
         </p>
       </div>
 
@@ -1530,54 +1440,11 @@
   </div>
 </section>
 
-<!-- PHOTO GALLERY SECTION -->
-<section id="gallery">
-  <div class="wrap">
-    <div class="section-header reveal">
-      <span class="section-tag">02 / GALLERY</span>
-      <h2 class="section-title">Life & Workspace</h2>
-      <p class="section-subtitle">Moments from college, hackathons, building projects, and workspace focus.</p>
-    </div>
-
-    <div class="gallery-grid">
-      <div class="gallery-card reveal" data-title="Developer Profile" data-desc="Focusing on software architecture and AI model exploration." data-img="./images/omkar_portrait.png">
-        <div class="gallery-img-wrap">
-          <img src="./images/omkar_portrait.png" alt="Omkar Sathe Profile">
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-tag">Developer Profile</div>
-          <div class="gallery-title">Omkar Sathe • ENTC Engineering</div>
-        </div>
-      </div>
-
-      <div class="gallery-card reveal" data-title="Creative Workspace" data-desc="Building responsive web interfaces and client-side web tools." data-img="./images/omkar_workspace.png">
-        <div class="gallery-img-wrap">
-          <img src="./images/omkar_workspace.png" alt="Workspace Setup">
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-tag">Workspace & Code</div>
-          <div class="gallery-title">Web Engineering & UI Development</div>
-        </div>
-      </div>
-
-      <div class="gallery-card reveal" data-title="Hackathon Presentation" data-desc="Presenting client-side canvas tools built for Hacker House Goa 2026." data-img="./images/omkar_hackathon.png">
-        <div class="gallery-img-wrap">
-          <img src="./images/omkar_hackathon.png" alt="Hackathon Event">
-        </div>
-        <div class="gallery-caption">
-          <div class="gallery-tag">Hackathon & Projects</div>
-          <div class="gallery-title">Hacker House Goa 2026 Presentation</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PROJECTS SECTION -->
-<section id="projects" class="alt-bg">
+<section id="projects">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">03 / PROJECTS</span>
+      <span class="section-tag">02 / PROJECTS</span>
       <h2 class="section-title">Selected Work</h2>
       <p class="section-subtitle">Small ideas, real projects, and things I'm learning by building.</p>
     </div>
@@ -1643,9 +1510,9 @@
       </div>
 
       <div class="project-card reveal">
-        <h4 class="project-card-title">SPPU ENTC Resource Hub</h4>
+        <h4 class="project-card-title">SPPU Developer Resource Hub</h4>
         <p class="project-card-desc">
-          A clean digital portal organizing engineering lecture notes, circuit analysis references, and lab manuals for ENTC students.
+          A clean digital portal organizing engineering lecture notes, software references, and lab experiment guides for students.
         </p>
         <div class="project-tags">
           <span class="tag">Web</span>
@@ -1659,10 +1526,10 @@
 </section>
 
 <!-- HACKATHON FEATURE SECTION -->
-<section id="hackathon" class="hackathon-section">
+<section id="hackathon" class="hackathon-section alt-bg">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">04 / HACKATHON</span>
+      <span class="section-tag">03 / HACKATHON</span>
       <h2 class="section-title">Built for a Hackathon. Built to learn.</h2>
       <p class="section-subtitle">
         Interactive demonstration of the Hacker House Goa 2026 Builder ID & PFP Generator built entirely client-side with Canvas rendering.
@@ -1746,7 +1613,7 @@
                 <option value="AI / ML Engineer">AI / ML Engineer</option>
                 <option value="Full-Stack Developer">Full-Stack Developer</option>
                 <option value="Frontend Engineer">Frontend Engineer</option>
-                <option value="Systems & Hardware">Systems & Hardware (ENTC)</option>
+                <option value="Systems & Software">Systems & Software</option>
                 <option value="Creative Technologist">Creative Technologist</option>
                 <option value="custom">Other / Custom...</option>
               </select>
@@ -1798,10 +1665,10 @@
 </section>
 
 <!-- LEARNING SECTION -->
-<section id="learning" class="alt-bg">
+<section id="learning">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">05 / LEARNING</span>
+      <span class="section-tag">04 / LEARNING</span>
       <h2 class="section-title">Currently Learning</h2>
       <p class="section-subtitle">An honest snapshot of what I'm actively studying and engineering right now.</p>
     </div>
@@ -1838,10 +1705,10 @@
 </section>
 
 <!-- JOURNEY SECTION -->
-<section id="journey">
+<section id="journey" class="alt-bg">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">06 / JOURNEY</span>
+      <span class="section-tag">05 / JOURNEY</span>
       <h2 class="section-title">My Journey</h2>
       <p class="section-subtitle">Key steps and milestones in my engineering education and development path.</p>
     </div>
@@ -1850,9 +1717,9 @@
       <div class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-year">2024–2025</div>
-        <h3 class="timeline-title">ENTC Engineering Student @ SPPU</h3>
+        <h3 class="timeline-title">Engineering Student @ SPPU</h3>
         <p class="timeline-desc">
-          Commenced Electronics & Telecommunication engineering degree, building strong core foundations in circuits, signals, and hardware logic.
+          Commenced engineering degree, building strong core foundations in computer logic, systems, and mathematics.
         </p>
       </div>
 
@@ -1896,10 +1763,10 @@
 </section>
 
 <!-- PERSONALITY SECTION -->
-<section id="personality" class="alt-bg">
+<section id="personality">
   <div class="wrap">
     <div class="section-header reveal">
-      <span class="section-tag">07 / PERSONALITY</span>
+      <span class="section-tag">06 / PERSONALITY</span>
       <h2 class="section-title">Beyond the screen</h2>
       <p class="section-subtitle">Habits and pursuits outside coding that keep my thinking sharp and balanced.</p>
     </div>
@@ -1930,10 +1797,10 @@
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact">
+<section id="contact" class="alt-bg">
   <div class="wrap">
     <div class="contact-box reveal">
-      <span class="section-tag">08 / CONTACT</span>
+      <span class="section-tag">07 / CONTACT</span>
       <h2 class="section-title" style="margin-bottom: 16px;">Let's Connect</h2>
       <p class="section-subtitle" style="margin: 0 auto 28px;">
         Whether you have an internship opportunity, project collaboration, or just want to talk AI/ML and web engineering — feel free to reach out!
@@ -1958,28 +1825,13 @@
 <footer>
   <div class="wrap footer-flex">
     <div>
-      © 2026 Omkar Sathe • ENTC Engineering Student & Developer
+      © 2026 Omkar Sathe • Developer & AI/ML Explorer
     </div>
     <div>
       <a href="https://hackerhousetask.vercel.app/" target="_blank" rel="noopener" style="color:var(--accent); font-weight:600;">Hacker House Goa App ↗</a>
     </div>
   </div>
 </footer>
-
-<!-- LIGHTBOX POPUP MODAL -->
-<div class="lightbox-modal" id="lightboxModal">
-  <div class="lightbox-content">
-    <button class="lightbox-close" id="lightboxClose">✕</button>
-    <div class="lightbox-body">
-      <img id="lightboxImg" src="" alt="Full view">
-    </div>
-    <div class="lightbox-info">
-      <div class="gallery-tag" id="lightboxTag">TAG</div>
-      <h3 style="font-size:1.1rem; font-weight:700;" id="lightboxTitle">Title</h3>
-      <p style="font-size:0.9rem; color:var(--text-muted); margin-top:4px;" id="lightboxDesc">Description</p>
-    </div>
-  </div>
-</div>
 
 <!-- TOAST NOTIFICATION -->
 <div class="toast" id="toast">Message notification</div>
@@ -2092,35 +1944,6 @@
       chessMoveIndex = (chessMoveIndex + 1) % chessMoves.length;
       chessMoveBtn.textContent = chessMoves[chessMoveIndex].btn;
       chessStatus.textContent = chessMoves[chessMoveIndex].text;
-    });
-  }
-
-  /* ---------------------------------------------------------
-   * Lightbox Modal for Photo Gallery
-   * --------------------------------------------------------- */
-  const lightboxModal = document.getElementById("lightboxModal");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const lightboxTitle = document.getElementById("lightboxTitle");
-  const lightboxTag = document.getElementById("lightboxTag");
-  const lightboxDesc = document.getElementById("lightboxDesc");
-  const lightboxClose = document.getElementById("lightboxClose");
-
-  document.querySelectorAll(".gallery-card").forEach(card => {
-    card.addEventListener("click", () => {
-      lightboxImg.src = card.dataset.img;
-      lightboxTitle.textContent = card.dataset.title;
-      lightboxTag.textContent = card.querySelector(".gallery-tag").textContent;
-      lightboxDesc.textContent = card.dataset.desc;
-      lightboxModal.classList.add("active");
-    });
-  });
-
-  if(lightboxClose){
-    lightboxClose.addEventListener("click", () => lightboxModal.classList.remove("active"));
-  }
-  if(lightboxModal){
-    lightboxModal.addEventListener("click", (e) => {
-      if(e.target === lightboxModal) lightboxModal.classList.remove("active");
     });
   }
 
@@ -2449,7 +2272,7 @@
 
     ctx.fillStyle = BLUE;
     ctx.font = "600 24px 'IBM Plex Mono', monospace";
-    const roleStr = (state.role || "ENTC STUDENT & DEVELOPER").toUpperCase();
+    const roleStr = (state.role || "DEVELOPER & AI/ML EXPLORER").toUpperCase();
     ctx.fillText(roleStr, nameX, nameY + 44);
 
     if(state.building){
